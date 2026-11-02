@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gaillard Paysagisme Sàrl | Paysagiste à Treyvaux (Fribourg)</title>
+<meta name="description" content="Gaillard Paysagisme Sàrl, paysagiste à Treyvaux (canton de Fribourg) : création, rénovation et entretien de vos extérieurs, de A à Z, à votre service depuis 2014.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --foret: #07503f;
+  --citron: #e8fe85;
+  --os: #f1efdf;
+  --blanc: #ffffff;
+  --gris-cendre: #efefef;
+  --charbon: #212529;
+  --graphite: #353535;
+  --etain: #6d6d6d;
+  --tuile-ciel: #b2cee7;
+  --tuile-peche: #fceace;
+  --tuile-sauge: #e6ecd5;
+  --mousse: #c3cda7;
+  --foret-fonce: #053b2f;
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; overflow-x: clip; }
+body { margin: 0; background: var(--os); color: var(--charbon); font-family: var(--sans); font-size: 16.5px; line-height: 1.52; letter-spacing: -0.022px; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+p { margin: 0; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 300; margin: 0; color: var(--charbon); text-wrap: balance; }
+.conteneur { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+section { padding: 96px 0; }
+.texte { max-width: 60ch; }
+.titre-section { font-size: clamp(34px, 4.6vw, 57px); line-height: 1.06; letter-spacing: -0.012em; }
+.sous-titre { font-family: var(--serif); font-weight: 300; font-size: 24px; line-height: 1.24; }
+.petit { font-size: 13px; font-weight: 500; letter-spacing: 0.025em; line-height: 1.5; }
+.etiquette { display: inline-block; font-size: 13px; font-weight: 500; letter-spacing: 0.025em; color: var(--foret); background: var(--tuile-sauge); border-radius: 100px; padding: 6px 14px; margin-bottom: 18px; }
+
+/* Boutons (pilules) */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-family: var(--sans); font-weight: 500; font-size: 15px; line-height: 1.2; letter-spacing: 0; padding: 12px 26px; min-height: 46px; border-radius: 100px; border: 1px solid transparent; text-decoration: none; cursor: pointer; white-space: nowrap; transition: background-color .2s, color .2s, border-color .2s; }
+.btn-principal { background: var(--foret); color: #ffffff; }
+.btn-principal:hover { background: var(--foret-fonce); }
+.btn-blanc { background: #ffffff; color: var(--charbon); }
+.btn-blanc:hover { background: var(--tuile-sauge); }
+.btn-contour { background: transparent; color: var(--graphite); border-color: var(--graphite); }
+.btn-contour:hover { background: rgba(53, 53, 53, .07); }
+.btn-contour-blanc { background: transparent; color: #ffffff; border-color: #ffffff; }
+.btn-contour-blanc:hover { background: rgba(255, 255, 255, .14); }
+.btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--foret); outline-offset: 3px; }
+.fond-foret a:focus-visible, .fond-foret button:focus-visible, .hero a:focus-visible { outline-color: #ffffff; }
+.ico { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* Bande défilante citron */
+.ticker { height: 32px; background: var(--citron); color: var(--charbon); overflow: hidden; display: flex; align-items: center; font-size: 13px; font-weight: 400; letter-spacing: 0; }
+.ticker-piste { display: flex; width: max-content; animation: defile 46s linear infinite; }
+.ticker:hover .ticker-piste { animation-play-state: paused; }
+.ticker-groupe { display: flex; align-items: center; flex: none; }
+.ticker-groupe span { display: inline-flex; align-items: center; gap: 14px; padding-right: 14px; white-space: nowrap; }
+.ticker .coche { width: 14px; height: 14px; fill: none; stroke: var(--foret); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+@keyframes defile { to { transform: translateX(-50%); } }
+
+/* Navigation */
+.nav { position: sticky; top: 0; z-index: 80; background: var(--foret); color: #ffffff; }
+.nav-interieur { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 76px; gap: 20px; }
+.nav-liens { display: flex; gap: 30px; }
+.nav-liens a { color: #ffffff; font-size: 15px; text-decoration: none; padding: 6px 0; background: linear-gradient(#fff, #fff) 0 100% / 0 1px no-repeat; transition: background-size .3s ease; }
+.nav-liens a:hover { background-size: 100% 1px; }
+.logo { display: inline-flex; align-items: center; background: #ffffff; border-radius: 100px; padding: 6px 18px; justify-self: center; }
+.logo img { height: 40px; width: auto; }
+.nav-droite { justify-self: end; display: flex; align-items: center; gap: 10px; }
+.burger { display: none; width: 46px; height: 46px; border-radius: 100px; border: 1px solid rgba(255, 255, 255, .5); background: transparent; position: relative; cursor: pointer; padding: 0; }
+.burger span { position: absolute; left: 14px; right: 14px; height: 1.5px; background: #ffffff; border-radius: 2px; transition: transform .3s ease, opacity .2s; }
+.burger span:nth-child(1) { top: 17px; } .burger span:nth-child(2) { top: 22px; } .burger span:nth-child(3) { top: 27px; }
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+.menu-mobile { position: fixed; inset: 0; z-index: 70; background: var(--foret); color: #ffffff; padding: 104px 28px 32px; display: flex; flex-direction: column; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity .3s, transform .3s, visibility .3s; overflow-y: auto; }
+.menu-mobile.ouvert { opacity: 1; visibility: visible; transform: none; }
+.menu-mobile ul { list-style: none; margin: 0; padding: 0; }
+.menu-mobile ul a { display: block; padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, .18); font-family: var(--serif); font-weight: 300; font-size: 38px; line-height: 1.1; letter-spacing: -0.02em; text-decoration: none; color: #ffffff; }
+.menu-bas { margin-top: auto; padding-top: 28px; display: grid; gap: 12px; }
+.menu-bas .btn { width: 100%; }
+.menu-bas p { font-size: 14px; text-align: center; color: rgba(255, 255, 255, .75); }
+body.menu-ouvert { overflow: hidden; }
+
+/* Héros */
+.hero { position: relative; min-height: calc(100svh - 108px); min-height: calc(100vh - 108px); color: #ffffff; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; background: var(--foret); padding: 80px 0 110px; isolation: isolate; }
+.hero-fond { position: absolute; inset: 0; z-index: -2; background: url("https://static.wixstatic.com/media/f975c0_a714880d7479472195f6a8a4c6c340cb~mv2.jpg") center / cover no-repeat; animation: zoom 6s ease-out both; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(5, 38, 30, .38) 0%, rgba(5, 38, 30, .18) 38%, rgba(5, 38, 30, .78) 100%); }
+@keyframes zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+.hero-contenu { max-width: 900px; margin: 0 auto; padding: 0 28px; }
+.badge { display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px; border-radius: 100px; background: rgba(255, 255, 255, .16); border: 1px solid rgba(255, 255, 255, .35); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-size: 13px; font-weight: 500; letter-spacing: 0.025em; margin-bottom: 28px; }
+.badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--citron); }
+.hero h1 { color: #ffffff; font-size: clamp(42px, 7.4vw, 80px); line-height: 1; letter-spacing: -0.02em; margin-bottom: 24px; }
+.hero .sous-titre { color: #ffffff; font-size: clamp(24px, 2.5vw, 28px); max-width: 700px; margin: 0 auto 36px; }
+.hero-boutons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.hero-boutons .btn { min-height: 50px; padding: 14px 30px; }
+.defiler { position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); color: #ffffff; font-size: 14px; font-weight: 500; text-decoration: none; display: inline-flex; gap: 10px; align-items: center; white-space: nowrap; }
+.defiler span { display: inline-block; animation: flotte 2s ease-in-out infinite; }
+@keyframes flotte { 50% { transform: translateY(4px); } }
+.hero .a1, .hero .a2, .hero .a3, .hero .a4 { animation: monte .9s cubic-bezier(.22, 1, .36, 1) both; }
+.hero .a1 { animation-delay: .15s; } .hero .a2 { animation-delay: .3s; } .hero .a3 { animation-delay: .45s; } .hero .a4 { animation-delay: .6s; }
+@keyframes monte { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+/* Introduction */
+.intro { display: grid; grid-template-columns: 1.25fr 1fr; gap: 72px; align-items: center; }
+.intro .titre-section { margin-bottom: 26px; }
+.intro .texte { font-size: 17px; color: var(--graphite); }
+.reperes { display: grid; gap: 14px; }
+.repere { display: flex; align-items: center; gap: 18px; background: #ffffff; border-radius: 20px; padding: 22px 26px; }
+.repere .rond { width: 48px; height: 48px; border-radius: 50%; background: var(--tuile-sauge); color: var(--foret); display: flex; align-items: center; justify-content: center; flex: none; }
+.repere strong { font-family: var(--serif); font-weight: 300; font-size: 28px; line-height: 1.1; letter-spacing: -0.012em; }
+
+/* Cartes de services */
+.services { padding-top: 0; }
+.cartes { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.carte-service { background: #ffffff; border-radius: 30px; overflow: hidden; display: flex; flex-direction: column; }
+.carte-photo { aspect-ratio: 16 / 10; overflow: hidden; background: var(--tuile-sauge); }
+.carte-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }
+.carte-service:hover .carte-photo img { transform: scale(1.05); }
+.carte-corps { padding: 36px 38px 40px; display: flex; flex-direction: column; flex: 1; }
+.carte-corps h3 { font-weight: 500; font-size: clamp(30px, 3vw, 40px); line-height: 1.06; letter-spacing: -0.012em; margin-bottom: 8px; }
+.carte-corps .sous-titre { color: var(--etain); margin-bottom: 24px; }
+.liste-coches { list-style: none; margin: 0 0 32px; padding: 0; display: grid; gap: 12px; }
+.liste-coches li { display: flex; gap: 12px; align-items: flex-start; color: var(--graphite); }
+.liste-coches svg { width: 20px; height: 20px; flex: none; margin-top: 2px; fill: none; stroke: var(--foret); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.carte-corps .btn { margin-top: auto; align-self: flex-start; }
+
+/* Tuiles pastel */
+.tete { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 52px; flex-wrap: wrap; }
+.tete .titre-section { max-width: 760px; }
+.tete .texte { color: var(--graphite); max-width: 380px; }
+.tuiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.tuile { border-radius: 20px; padding: 30px; display: flex; flex-direction: column; min-height: 300px; }
+.tuile:nth-child(4n + 1) { background: var(--tuile-ciel); }
+.tuile:nth-child(4n + 2) { background: var(--tuile-peche); }
+.tuile:nth-child(4n + 3) { background: var(--tuile-sauge); }
+.tuile:nth-child(4n + 4) { background: var(--gris-cendre); }
+.tuile .picto { width: 56px; height: 56px; margin-bottom: 36px; color: var(--foret); transition: transform .4s cubic-bezier(.22, 1, .36, 1); }
+.tuile .picto svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.tuile:hover .picto { transform: rotate(-10deg) scale(1.06); }
+.tuile h3 { font-weight: 500; font-size: 26px; line-height: 1.1; letter-spacing: -0.012em; margin-bottom: 12px; margin-top: auto; }
+.tuile p { font-size: 15px; line-height: 1.5; color: var(--graphite); }
+.tuile.large { min-height: 220px; }
+.tuile.large h3 { margin-top: 0; }
+
+/* Bande forêt */
+.fond-foret { background: var(--foret); color: #ffffff; }
+.fond-foret h2, .fond-foret h3 { color: #ffffff; }
+.entretien { display: grid; grid-template-columns: 1.1fr 1fr; gap: 72px; align-items: center; }
+.entretien .titre-section { margin-bottom: 14px; }
+.accroche { font-family: var(--serif); font-weight: 300; font-size: 28px; line-height: 1.24; color: var(--citron); margin-bottom: 44px; }
+.points { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 32px; }
+.point .rond { width: 36px; height: 36px; border-radius: 50%; background: #ffffff; color: var(--foret); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.point .rond svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.point h3 { font-family: var(--sans); font-weight: 600; font-size: 17px; line-height: 1.3; margin-bottom: 6px; }
+.point p { font-size: 15px; line-height: 1.5; color: rgba(255, 255, 255, .84); }
+.entretien-photo { border-radius: 20px; overflow: hidden; aspect-ratio: 4 / 5; background: var(--foret-fonce); }
+.entretien-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Pas de mauvaises surprises */
+.surprises { text-align: center; }
+.surprises .titre-section { max-width: 860px; margin: 0 auto 52px; }
+.surprises .tuiles { grid-template-columns: repeat(3, 1fr); text-align: left; }
+
+/* À propos */
+.apropos { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.apropos .titre-section { margin-bottom: 26px; }
+.apropos .texte { color: var(--graphite); font-size: 17px; }
+.citation { background: var(--tuile-sauge); border-radius: 30px; padding: 56px 48px; min-height: 340px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; }
+.citation blockquote { margin: 0; font-family: var(--serif); font-weight: 300; font-size: clamp(34px, 4vw, 52px); line-height: 1.1; letter-spacing: -0.012em; color: var(--foret); }
+.citation .signature { font-size: 14px; font-weight: 500; letter-spacing: 0.025em; color: var(--graphite); display: flex; align-items: center; gap: 12px; }
+.citation .signature::before { content: ""; width: 36px; height: 1px; background: var(--foret); }
+
+/* Contact */
+.contact-grille { display: grid; grid-template-columns: 1fr 1.1fr; gap: 24px; margin-top: 52px; align-items: stretch; }
+.carte-contact { background: #ffffff; border-radius: 20px; padding: 36px; display: flex; flex-direction: column; }
+.coordonnees { list-style: none; margin: 0 0 32px; padding: 0; display: grid; gap: 22px; }
+.coordonnees li { display: flex; gap: 16px; align-items: flex-start; }
+.coordonnees .rond { width: 44px; height: 44px; border-radius: 50%; background: var(--tuile-sauge); color: var(--foret); display: flex; align-items: center; justify-content: center; flex: none; }
+.coordonnees .rond svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.coordonnees strong { display: block; font-size: 12px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--etain); margin-bottom: 2px; }
+.coordonnees span, .coordonnees a { font-size: 17px; line-height: 1.45; text-decoration: none; color: var(--charbon); overflow-wrap: break-word; }
+.coordonnees a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.contact-boutons { margin-top: auto; display: flex; gap: 12px; flex-wrap: wrap; }
+.formulaire { display: grid; gap: 14px; align-content: start; }
+.formulaire .rang { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.formulaire label { display: block; font-size: 13px; font-weight: 500; letter-spacing: .025em; margin: 0 0 6px 22px; color: var(--graphite); }
+.formulaire input, .formulaire textarea { width: 100%; font: inherit; font-size: 16px; letter-spacing: 0; color: var(--charbon); background: #ffffff; border: 1px solid var(--mousse); border-radius: 33px; padding: 0 24px; height: 56px; transition: border-color .2s; }
+.formulaire textarea { height: auto; min-height: 150px; padding: 18px 24px; border-radius: 28px; resize: vertical; display: block; }
+.formulaire input::placeholder, .formulaire textarea::placeholder { color: var(--etain); opacity: .8; }
+.formulaire input:focus, .formulaire textarea:focus { outline: none; border-color: var(--foret); }
+.formulaire .actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 6px; }
+.formulaire .actions .btn { min-height: 52px; padding: 14px 36px; }
+.confirmation { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500; color: var(--foret); margin: 0; }
+.confirmation svg { width: 18px; height: 18px; fill: none; stroke: var(--foret); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.carte-map { margin-top: 24px; border-radius: 20px; overflow: hidden; height: 380px; background: var(--tuile-sauge); }
+.carte-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+/* Pied de page */
+.pied { background: var(--foret); color: #ffffff; padding: 120px 0 0; }
+.pied-haut { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; padding-bottom: 56px; border-bottom: 1px solid rgba(255, 255, 255, .18); }
+.pied-haut p { font-family: var(--serif); font-weight: 300; font-size: clamp(26px, 3vw, 36px); line-height: 1.15; letter-spacing: -0.012em; }
+.pied-grille { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 48px; padding: 56px 0; }
+.pied h3 { font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255, 255, 255, .6); margin-bottom: 20px; }
+.pied ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.pied li, .pied a { color: #ffffff; font-size: 16px; line-height: 1.5; }
+.pied a { text-decoration: none; }
+.pied li a { background: linear-gradient(#fff, #fff) 0 100% / 0 1px no-repeat; transition: background-size .3s ease; padding-bottom: 2px; }
+.pied li a:hover { background-size: 100% 1px; }
+.pied-bas { border-top: 1px solid rgba(255, 255, 255, .18); padding: 26px 0 32px; display: flex; flex-direction: column; gap: 6px; }
+.pied-bas span:first-child { font-size: 14px; color: #ffffff; }
+.pied-bas .maquette { font-size: 12px; color: rgba(255, 255, 255, .5); }
+
+/* Barre mobile */
+.barre-mobile { display: none; }
+
+/* Apparitions */
+.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease var(--d, 0ms), transform .6s ease var(--d, 0ms), translate .3s ease; }
+.js .reveal.vu { opacity: 1; transform: none; }
+.js .reveal.instant { transition: translate .3s ease; }
+.tuile.reveal:hover { translate: 0 -4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ticker-piste { animation: none; }
+  .ticker-groupe + .ticker-groupe { display: none; }
+  .hero-fond, .hero .a1, .hero .a2, .hero .a3, .hero .a4, .defiler span { animation: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .carte-photo img, .tuile .picto, .btn { transition: none; }
+}
+
+/* Tablette */
+@media (max-width: 1040px) {
+  .nav-interieur { grid-template-columns: 1fr auto 1fr; }
+  .nav-liens { display: none; }
+  .burger { display: block; justify-self: start; grid-column: 1; grid-row: 1; }
+  .logo { grid-column: 2; }
+  .tuiles { grid-template-columns: repeat(2, 1fr); }
+  .intro, .entretien, .apropos { grid-template-columns: 1fr; gap: 48px; }
+  .entretien-photo { aspect-ratio: 16 / 10; }
+  .contact-grille { grid-template-columns: 1fr; }
+}
+@media (min-width: 1041px) { .burger { display: none; } }
+@media (max-width: 860px) {
+  section { padding: 76px 0; }
+  .cartes { grid-template-columns: 1fr; }
+  .surprises .tuiles { grid-template-columns: 1fr; }
+  .pied-grille { grid-template-columns: 1fr 1fr; }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  body { padding-bottom: 78px; font-size: 16px; }
+  section { padding: 60px 0; }
+  .conteneur { padding: 0 20px; }
+  .nav-interieur { height: 68px; }
+  .logo img { height: 34px; }
+  .nav-droite { display: none; }
+  .menu-mobile { padding-top: 96px; }
+  .menu-mobile ul a { font-size: 34px; }
+  .hero { padding: 56px 0 100px; min-height: calc(100svh - 100px); }
+  .hero-contenu { padding: 0 20px; }
+  .badge { font-size: 12px; padding: 7px 14px; margin-bottom: 22px; }
+  .hero h1 { margin-bottom: 18px; }
+  .hero-boutons { flex-direction: column; align-items: stretch; }
+  .hero-boutons .btn { white-space: normal; }
+  .defiler { bottom: 22px; font-size: 13px; }
+  .carte-corps { padding: 28px 24px 32px; }
+  .carte-corps .btn { align-self: stretch; }
+  .tete { margin-bottom: 36px; gap: 18px; }
+  .tuiles { grid-template-columns: 1fr; gap: 12px; }
+  .tuile { min-height: 0; padding: 26px 24px; }
+  .tuile .picto { margin-bottom: 26px; }
+  .points { grid-template-columns: 1fr; gap: 26px; }
+  .accroche { font-size: 24px; margin-bottom: 34px; }
+  .repere { padding: 18px 20px; }
+  .repere strong { font-size: 24px; }
+  .citation { padding: 36px 26px; min-height: 280px; border-radius: 26px; }
+  .carte-service { border-radius: 26px; }
+  .carte-contact { padding: 28px 22px; }
+  .contact-boutons .btn { flex: 1 1 100%; }
+  .formulaire .rang { grid-template-columns: 1fr; }
+  .formulaire .actions { flex-direction: column; align-items: stretch; }
+  .formulaire .confirmation { justify-content: center; }
+  .carte-map { height: 300px; }
+  .pied { padding-top: 80px; }
+  .pied-grille { grid-template-columns: 1fr; gap: 36px; padding: 44px 0; }
+  .barre-mobile { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); background: var(--os); border-top: 1px solid var(--mousse); }
+  .barre-mobile .btn { min-height: 50px; padding: 12px 10px; }
+  .barre-mobile .btn-blanc { border-color: var(--foret); color: var(--foret); background: #ffffff; }
+}
+</style>
+</head>
+<body id="haut">
+<script>document.documentElement.classList.add('js');</script>
+
+<!-- Coche partagée -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-coche" viewBox="0 0 20 20"><path d="m4.5 10.5 3.5 3.5 7.5-8"/></symbol>
+    <symbol id="i-lieu" viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+    <symbol id="i-tel" viewBox="0 0 24 24"><path d="M5 4.5h3.5l1.7 4.2-2.2 1.4a11 11 0 0 0 5.4 5.4l1.4-2.2 4.2 1.7V19a1.5 1.5 0 0 1-1.6 1.5A15 15 0 0 1 3.5 6.1 1.5 1.5 0 0 1 5 4.5z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></symbol>
+    <symbol id="i-horloge" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.2 2"/></symbol>
+  </defs>
+</svg>
+
+<!-- 1. Bande défilante -->
+<div class="ticker" role="marquee" aria-label="Informations">
+  <div class="ticker-piste">
+    <div class="ticker-groupe">
+      <span>Paysagiste à Treyvaux depuis 2014 <svg class="coche" aria-hidden="true"><use href="#i-coche"/></svg></span>
+      <span>Création et rénovation de A à Z <svg class="coche" aria-hidden="true"><use href="#i-coche"/></svg></span>
+      <span>Mise à l'enquête et coordination des corps de métier <svg class="coche" aria-hidden="true"><use href="#i-coche"/></svg></span>
+      <span>Entretien de tous vos extérieurs <svg class="coche" aria-hidden="true"><use href="#i-coche"/></svg></span>
+      <span>Du lundi au vendredi, 7h15 – 18h15 <svg class="coche" aria-hidden="true"><use href="#i-coche"/></svg></span>
+    </div>
+    <div class="ticker-groupe" aria-hidden="true">
+      <span>Paysagiste à Treyvaux depuis 2014 <svg class="coche"><use href="#i-coche"/></svg></span>
+      <span>Création et rénovation de A à Z <svg class="coche"><use href="#i-coche"/></svg></span>
+      <span>Mise à l'enquête et coordination des corps de métier <svg class="coche"><use href="#i-coche"/></svg></span>
+      <span>Entretien de tous vos extérieurs <svg class="coche"><use href="#i-coche"/></svg></span>
+      <span>Du lundi au vendredi, 7h15 – 18h15 <svg class="coche"><use href="#i-coche"/></svg></span>
+    </div>
+  </div>
+</div>
+
+<!-- 2. Navigation -->
+<header class="nav fond-foret">
+  <div class="conteneur nav-interieur">
+    <nav class="nav-liens" aria-label="Navigation principale">
+      <a href="#creation">Création</a>
+      <a href="#entretien">Entretien</a>
+      <a href="#a-propos">À propos</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile"><span></span><span></span><span></span></button>
+    <a class="logo" href="#haut" aria-label="Gaillard Paysagisme, retour en haut de la page"><img src="https://static.wixstatic.com/media/f975c0_c44449d596cb4ab9a2c676edb584d48e~mv2.png" alt="Logo de Gaillard Paysagisme" width="140" height="40"></a>
+    <div class="nav-droite"><a class="btn btn-blanc" href="#contact">Prendre rendez-vous</a></div>
+  </div>
+</header>
+<div class="menu-mobile" id="menu-mobile" aria-hidden="true">
+  <ul>
+    <li><a href="#creation">Création</a></li>
+    <li><a href="#entretien">Entretien</a></li>
+    <li><a href="#a-propos">À propos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="menu-bas">
+    <a class="btn btn-blanc" href="#contact">Prendre rendez-vous</a>
+    <a class="btn btn-contour-blanc" href="tel:+41795186586">Nous appeler : 079 518 65 86</a>
+    <p>Du lundi au vendredi, de 7h15 à 18h15</p>
+  </div>
+</div>
+
+<main>
+  <!-- 3. Héros -->
+  <section class="hero" style="padding-bottom:110px">
+    <div class="hero-fond" role="img" aria-label="Allée et jardin taillé"></div>
+    <div class="hero-contenu">
+      <p class="badge a1">Gaillard Paysagisme · Treyvaux (FR)</p>
+      <h1 class="a2">Votre jardin, de A&nbsp;à&nbsp;Z.</h1>
+      <p class="sous-titre a3">Création, rénovation et entretien de vos extérieurs, toujours à votre service depuis 2014.</p>
+      <div class="hero-boutons a4">
+        <a class="btn btn-blanc" href="#contact" style="color:var(--foret)">Prendre rendez-vous</a>
+        <a class="btn btn-contour-blanc" href="tel:+41795186586">Nous appeler : 079 518 65 86</a>
+      </div>
+    </div>
+    <a class="defiler" href="#introduction">Défiler pour découvrir <span aria-hidden="true">↓</span></a>
+  </section>
+
+  <!-- 4. Introduction -->
+  <section id="introduction">
+    <div class="conteneur intro">
+      <div class="reveal">
+        <h2 class="titre-section">Nous réalisons vos projets, avec vous, de A&nbsp;à&nbsp;Z.</h2>
+        <p class="texte">Reconnue pour la qualité de ses services, son efficacité et son professionnalisme, notre équipe répond à toutes les demandes et gère chaque projet de bout en bout, avec professionnalisme.</p>
+      </div>
+      <div class="reperes" data-cascade>
+        <div class="repere reveal"><span class="rond"><svg class="ico"><use href="#i-horloge"/></svg></span><strong>Depuis 2014</strong></div>
+        <div class="repere reveal"><span class="rond"><svg class="ico"><use href="#i-coche"/></svg></span><strong>Création &amp; entretien</strong></div>
+        <div class="repere reveal"><span class="rond"><svg class="ico"><use href="#i-coche"/></svg></span><strong>Paysagiste diplômé</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Cartes de services -->
+  <section class="services" id="services">
+    <div class="conteneur cartes" data-cascade>
+      <article class="carte-service reveal">
+        <div class="carte-photo"><img src="https://static.wixstatic.com/media/f975c0_97a8fb0821744a79a30df3eab44795ac~mv2.jpg" alt="Terrasse en bois et maison" loading="lazy" width="900" height="560"></div>
+        <div class="carte-corps">
+          <h3>Création et rénovation</h3>
+          <p class="sous-titre">Un service d'exception</p>
+          <ul class="liste-coches">
+            <li><svg aria-hidden="true"><use href="#i-coche"/></svg>Mise à l'enquête</li>
+            <li><svg aria-hidden="true"><use href="#i-coche"/></svg>Coordination des corps de métier</li>
+            <li><svg aria-hidden="true"><use href="#i-coche"/></svg>Terrasses</li>
+            <li><svg aria-hidden="true"><use href="#i-coche"/></svg>Murs</li>
+            <li><svg aria-hidden="true"><use href="#i-coche"/></svg>Piscines et spas</li>
+            <li><svg aria-hidden="true"><use href="#i-coche"/></svg>Pavage et places de parc</li>
+          </ul>
+          <a class="btn btn-contour" href="#creation">Voir le détail ↓</a>
+        </div>
+      </article>
+      <article class="carte-service reveal">
+        <div class="carte-photo"><img src="https://static.wixstatic.com/media/90ac05b31ad94cb08a678a1f58de6ab5.jpg" alt="Tracteur tondeuse sur une pelouse" loading="lazy" width="900" height="560"></div>
+        <div class="carte-corps">
+          <h3>Entretien</h3>
+          <p class="sous-titre">Une coupe parfaite</p>
+          <ul class="liste-coches">
+            <li><svg aria-hidden="true"><use href="#i-coche"/></svg>Taille des haies et arbustes</li>
+            <li><svg aria-hidden="true"><use href="#i-coche"/></svg>Élagage des grands arbres</li>
+            <li><svg aria-hidden="true"><use href="#i-coche"/></svg>Entretien des gazons</li>
+            <li><svg aria-hidden="true"><use href="#i-coche"/></svg>Traitements phytosanitaires</li>
+            <li><svg aria-hidden="true"><use href="#i-coche"/></svg>Nettoyage haute pression</li>
+          </ul>
+          <a class="btn btn-contour" href="#entretien">Voir le détail ↓</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 6. Création et rénovation : tuiles -->
+  <section id="creation" style="padding-top:20px">
+    <div class="conteneur">
+      <div class="tete reveal">
+        <h2 class="titre-section">Création et rénovation : votre projet de A&nbsp;à&nbsp;Z.</h2>
+        <p class="texte">De la mise à l'enquête à la dernière plantation, nous gérons et coordonnons chaque étape.</p>
+      </div>
+      <div class="tuiles" data-cascade>
+        <article class="tuile reveal"><div class="picto"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 20h32l4 10H4z"/><path d="M12 30v10M36 30v10M24 20v10"/></svg></div><h3>Terrasses</h3><p>Terrasses en grès cérame, bois, pierres naturelles, béton ou WPC.</p></article>
+        <article class="tuile reveal"><div class="picto"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="12" width="36" height="24" rx="1"/><path d="M6 20h36M6 28h36M18 12v8M30 12v8M12 20v8M24 20v8M36 20v8M18 28v8M30 28v8"/></svg></div><h3>Murs</h3><p>Murs en pierres naturelles, éléments préfabriqués, bois ou béton.</p></article>
+        <article class="tuile reveal"><div class="picto"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="16" width="36" height="22" rx="4"/><path d="M10 28c3 0 3 2 6 2s3-2 6-2 3 2 6 2 3-2 6-2 3 2 6 2"/><path d="M32 16V8M38 16V8M32 11h6"/></svg></div><h3>Piscines, margelles et spas</h3><p>Piscines et margelles. Spas hors-sol, semi-enterrés ou enterrés.</p></article>
+        <article class="tuile reveal"><div class="picto"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 42 18 8M40 42 30 8M14 14h20M20 14v16M28 14v16M17 30h6M25 30h6"/></svg></div><h3>Places de jeux privées et communales</h3><p>Places de jeux privées et professionnelles (communes…).</p></article>
+        <article class="tuile reveal"><div class="picto"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 42V22M24 28c-8 0-12-5-12-12 8 0 12 5 12 12zM24 24c0-8 5-12 12-12 0 8-5 12-12 12z"/><path d="M14 42h20"/></svg></div><h3>Plantation, gazon et prairie</h3><p>Plantation, gazon, gazon pré-cultivé, prairie.</p></article>
+        <article class="tuile reveal"><div class="picto"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 26 24 18l16 8-16 8z"/><path d="M8 26v6l16 8 16-8v-6M24 34v6"/></svg></div><h3>Radiers, dalles et socles</h3><p>Radiers et dalles (fondations pour vérandas chauffées ou non, spas, cabanes de jardin). Socles pour luminaires, couverts à voitures et parasols.</p></article>
+        <article class="tuile reveal"><div class="picto"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="16" height="10"/><rect x="26" y="10" width="16" height="10"/><rect x="16" y="24" width="16" height="10"/><rect x="6" y="24" width="6" height="10"/><rect x="36" y="24" width="6" height="10"/></svg></div><h3>Pavage, goudronnage et places de parc</h3><p>Pavage, goudronnage, places de parc.</p></article>
+        <article class="tuile reveal"><div class="picto"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M30 6l8 8M34 10 20 24"/><path d="M20 24c-4 0-10 4-12 12l-2 4h6c8-2 12-8 12-12z"/><path d="M6 44h36"/></svg></div><h3>Terrassements, drainage, fouilles et tranchées</h3><p>Terrassements, drainage, fouilles et tranchées.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Entretien : bande forêt -->
+  <section class="fond-foret" id="entretien">
+    <div class="conteneur entretien">
+      <div>
+        <div class="reveal">
+          <h2 class="titre-section">Nous entretenons ce qui vous est le plus cher.</h2>
+          <p class="accroche">Efficacité et talent.</p>
+        </div>
+        <div class="points" data-cascade>
+          <div class="point reveal"><div class="rond"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21v-6M12 15c-4 0-6-3-6-6 0-3 2-5 4-5 1-1 3-1 4 0 2 0 4 2 4 5 0 3-2 6-6 6z"/></svg></div><h3>Abattage et élagage</h3><p>Abattage, taille et élagage des grands arbres.</p></div>
+          <div class="point reveal"><div class="rond"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M5 20v-8a3 3 0 0 1 6 0v8M13 20v-8a3 3 0 0 1 6 0v8"/></svg></div><h3>Haies, arbustes et gazons</h3><p>Taille des haies et des arbustes, entretien des gazons.</p></div>
+          <div class="point reveal"><div class="rond"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></div><h3>Traitements phytosanitaires</h3><p>Traitements phytosanitaires (arbres fruitiers…).</p></div>
+          <div class="point reveal"><div class="rond"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c0-9 6-14 15-14 0 9-5 15-14 15M5 19l8-8"/></svg></div><h3>Entretien général</h3><p>Nettoyage haute pression, chéneaux et gouttières, caniveaux, ramassage des feuilles, désherbage et entretien des surfaces plantées.</p></div>
+        </div>
+      </div>
+      <figure class="entretien-photo reveal" style="margin:0"><img src="https://static.wixstatic.com/media/f975c0_b20ca52bc391417e9634f6ea72184dfe~mv2.jpg" alt="Tronçonneuse et coupe de bois" loading="lazy" width="800" height="1000"></figure>
+    </div>
+  </section>
+
+  <!-- 8. Pas de mauvaises surprises -->
+  <section class="surprises">
+    <div class="conteneur">
+      <p class="etiquette reveal">Pas de mauvaises surprises !</p>
+      <h2 class="titre-section reveal">Un seul interlocuteur, du premier rendez-vous à la fin du chantier.</h2>
+      <div class="tuiles" data-cascade>
+        <article class="tuile large reveal"><div class="picto"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 38 12 30 32 10l6 6-20 20z"/><path d="M28 14l6 6"/></svg></div><h3>Propositions d'aménagement</h3></article>
+        <article class="tuile large reveal"><div class="picto"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 6h18l8 8v28H12z"/><path d="M30 6v8h8M18 24h14M18 31h14"/></svg></div><h3>Mise à l'enquête</h3></article>
+        <article class="tuile large reveal"><div class="picto"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="14" cy="16" r="5"/><circle cx="34" cy="16" r="5"/><circle cx="24" cy="34" r="5"/><path d="M18 19l4 11M30 19l-4 11M19 16h10"/></svg></div><h3>Coordination des corps de métier et évacuation des déchets</h3></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. À propos -->
+  <section id="a-propos" style="padding-top:20px">
+    <div class="conteneur apropos">
+      <div class="reveal">
+        <h2 class="titre-section">Alain, paysagiste diplômé.</h2>
+        <p class="texte">Alain est le directeur de Gaillard Paysagisme, une entreprise de Treyvaux à votre service depuis 2014. Elle est reconnue pour la qualité de ses services, son efficacité et son professionnalisme.</p>
+      </div>
+      <figure class="citation reveal" style="margin:0">
+        <blockquote>…toujours à votre service !</blockquote>
+        <figcaption class="signature">Alain, directeur</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 10. Contact -->
+  <section id="contact" style="padding-top:20px">
+    <div class="conteneur">
+      <h2 class="titre-section reveal">Parlons de votre projet.</h2>
+      <div class="contact-grille">
+        <div class="carte-contact reveal">
+          <ul class="coordonnees">
+            <li><span class="rond"><svg aria-hidden="true"><use href="#i-lieu"/></svg></span><div><strong>Adresse</strong><span>Chemin du Marais 31<br>1733 Treyvaux (canton de Fribourg)</span></div></li>
+            <li><span class="rond"><svg aria-hidden="true"><use href="#i-tel"/></svg></span><div><strong>Téléphone</strong><a href="tel:+41795186586">079 518 65 86</a></div></li>
+            <li><span class="rond"><svg aria-hidden="true"><use href="#i-mail"/></svg></span><div><strong>E-mail</strong><a href="mailto:alain@gaillardpaysagisme.ch">alain@gaillardpaysagisme.ch</a></div></li>
+            <li><span class="rond"><svg aria-hidden="true"><use href="#i-horloge"/></svg></span><div><strong>Horaires</strong><span>Du lundi au vendredi, de 7h15 à 18h15<br>Fermé le samedi et le dimanche</span></div></li>
+          </ul>
+          <div class="contact-boutons">
+            <a class="btn btn-principal" href="tel:+41795186586">Appeler</a>
+            <a class="btn btn-contour" href="mailto:alain@gaillardpaysagisme.ch">Écrire un e-mail</a>
+          </div>
+        </div>
+        <form class="formulaire reveal" id="formulaire" novalidate>
+          <div class="rang">
+            <div><label for="nom">Nom</label><input id="nom" name="nom" type="text" autocomplete="name" placeholder="Votre nom"></div>
+            <div><label for="tel">Téléphone</label><input id="tel" name="tel" type="tel" autocomplete="tel" placeholder="Votre numéro"></div>
+          </div>
+          <div><label for="mail">E-mail</label><input id="mail" name="mail" type="email" autocomplete="email" placeholder="Votre adresse e-mail"></div>
+          <div><label for="projet">Votre projet</label><textarea id="projet" name="projet" placeholder="Décrivez-nous votre projet"></textarea></div>
+          <div class="actions">
+            <button class="btn btn-principal" type="submit">Envoyer</button>
+            <p class="confirmation" id="confirmation" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+      <div class="carte-map reveal">
+        <iframe title="Carte : Chemin du Marais 31, 1733 Treyvaux" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Chemin+du+Marais+31,+1733+Treyvaux&amp;hl=fr&amp;z=15&amp;output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 11. Pied de page -->
+<footer class="pied fond-foret">
+  <div class="conteneur">
+    <div class="pied-haut">
+      <a class="logo" href="#haut" aria-label="Retour en haut de la page"><img src="https://static.wixstatic.com/media/f975c0_c44449d596cb4ab9a2c676edb584d48e~mv2.png" alt="Logo de Gaillard Paysagisme" width="140" height="40" loading="lazy"></a>
+      <p>Gaillard Paysagisme Sàrl — à votre service depuis 2014</p>
+    </div>
+    <div class="pied-grille">
+      <div>
+        <h3>Coordonnées</h3>
+        <ul>
+          <li>Chemin du Marais 31<br>1733 Treyvaux (canton de Fribourg)</li>
+          <li><a href="tel:+41795186586">079 518 65 86</a></li>
+          <li><a href="mailto:alain@gaillardpaysagisme.ch">alain@gaillardpaysagisme.ch</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Services</h3>
+        <ul>
+          <li><a href="#creation">Création et rénovation</a></li>
+          <li><a href="#entretien">Entretien</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Horaires</h3>
+        <ul>
+          <li>Du lundi au vendredi<br>de 7h15 à 18h15</li>
+          <li>Fermé le samedi et le dimanche</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pied-bas">
+      <span>© 2026 Gaillard Paysagisme Sàrl</span>
+      <span class="maquette">Maquette de démonstration réalisée par gdjahoui.com</span>
+    </div>
+  </div>
+</footer>
+
+<!-- 12. Barre d'appel mobile -->
+<div class="barre-mobile">
+  <a class="btn btn-principal" href="tel:+41795186586">Appeler</a>
+  <a class="btn btn-blanc" href="#contact">Rendez-vous</a>
+</div>
+
+<script>
+/* ---------- Menu mobile ---------- */
+(function () {
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('menu-mobile');
+  function basculer(ouvert) {
+    menu.classList.toggle('ouvert', ouvert);
+    menu.setAttribute('aria-hidden', !ouvert);
+    document.body.classList.toggle('menu-ouvert', ouvert);
+    burger.setAttribute('aria-expanded', ouvert);
+    burger.setAttribute('aria-label', ouvert ? 'Fermer le menu' : 'Ouvrir le menu');
+  }
+  burger.addEventListener('click', function () { basculer(!menu.classList.contains('ouvert')); });
+  menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { basculer(false); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') basculer(false); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 1040) basculer(false); });
+})();
+
+/* ---------- Formulaire (démonstration : aucun envoi réel) ---------- */
+document.getElementById('formulaire').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const c = document.getElementById('confirmation');
+  c.innerHTML = '<svg viewBox="0 0 20 20" aria-hidden="true"><use href="#i-coche"/></svg><span></span>';
+  c.lastChild.textContent = 'Merci ! Votre message a bien été envoyé.';
+  this.reset();
+});
+
+/* ---------- Apparitions au défilement (jamais de zone vide) ---------- */
+(function () {
+  const els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  // Cascade : 60 ms d'écart entre éléments frères d'un même groupe
+  document.querySelectorAll('[data-cascade]').forEach(function (groupe) {
+    Array.prototype.slice.call(groupe.children).forEach(function (el, i) { el.style.setProperty('--d', (i * 60) + 'ms'); });
+  });
+  function montrer(el, instantane) {
+    if (instantane) el.classList.add('instant');
+    el.classList.add('vu');
+  }
+  function balayer() {
+    els.forEach(function (el) {
+      if (el.classList.contains('vu')) return;
+      const r = el.getBoundingClientRect();
+      if (r.bottom < 0) montrer(el, true);
+      else if (r.top < window.innerHeight) montrer(el, false);
+    });
+  }
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { montrer(e, true); }); return; }
+  const obs = new IntersectionObserver(function (entrees) {
+    entrees.forEach(function (en) {
+      if (en.isIntersecting) { montrer(en.target, false); obs.unobserve(en.target); }
+      else if (en.boundingClientRect.bottom < 0) { montrer(en.target, true); obs.unobserve(en.target); }
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+  els.forEach(function (e) { obs.observe(e); });
+
+  let minuterie;
+  window.addEventListener('scroll', function () { clearTimeout(minuterie); minuterie = setTimeout(balayer, 120); }, { passive: true });
+  window.addEventListener('load', balayer);
+  window.addEventListener('resize', balayer);
+
+  // Lien d'ancre (clic ou adresse avec #) : la cible et tout ce qui la précède sont visibles tout de suite
+  function reveler(id) {
+    const cible = id && document.getElementById(id);
+    if (!cible) return;
+    els.forEach(function (e) {
+      if (cible.contains(e) || (cible.compareDocumentPosition(e) & Node.DOCUMENT_POSITION_PRECEDING)) montrer(e, true);
+    });
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function () { reveler(a.getAttribute('href').slice(1)); });
+  });
+  if (location.hash) reveler(decodeURIComponent(location.hash.slice(1)));
+})();
+</script>
+</body>
+</html>
