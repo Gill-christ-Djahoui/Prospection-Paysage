@@ -250,12 +250,13 @@ section { padding: 75px 0; }
   .champ-bouton:focus-within { outline: none; }
   .garanties { gap: 12px 20px; }
   .collage { flex-wrap: wrap; margin-bottom: -60px; padding: 0 10px; }
-  .polaroid, .polaroid:nth-child(3) { width: 44vw; }
-  .polaroid:nth-child(1) { margin: 0 -8vw 0 0; }
-  .polaroid:nth-child(2) { margin: 20px 0 0; }
-  .polaroid:nth-child(3) { margin: -14px 14vw 0 0; }
-  .polaroid:nth-child(4) { margin: -6px 0 0 -10vw; }
-  .polaroid:nth-child(5) { margin: -22vw 0 0 24vw; }
+  .collage { justify-content: center; }
+  .polaroid, .polaroid:nth-child(3) { width: 36vw; margin: 0; }
+  .polaroid:nth-child(1) { margin: 0 -5vw 0 0; }
+  .polaroid:nth-child(2) { margin: 14px -5vw 0 0; }
+  .polaroid:nth-child(3) { margin: 0; }
+  .polaroid:nth-child(4) { margin: -4vw 0 0 12vw; }
+  .polaroid:nth-child(5) { margin: -2vw 0 0 -5vw; }
   .bande { padding-top: 110px; }
   .grille-services { grid-template-columns: 1fr; margin-top: 40px; }
   .service { padding: 32px 22px; }
@@ -355,11 +356,11 @@ section { padding: 75px 0; }
 
   <!-- Collage -->
   <div class="collage" aria-label="Quelques chantiers de Clément Paysagisme">
-    <figure class="polaroid"><img src="images/work-2.jpg" alt="Aménagement extérieur réalisé par Clément Paysagisme" width="500" height="625"></figure>
-    <figure class="polaroid"><img src="images/work-5.jpg" alt="Chantier de paysagisme réalisé par Clément Paysagisme" width="500" height="625"></figure>
-    <figure class="polaroid"><img src="images/work-8.jpg" alt="Dallage et muret réalisés par Clément Paysagisme" width="500" height="625"></figure>
-    <figure class="polaroid"><img src="images/work-11.jpg" alt="Jardin entretenu par Clément Paysagisme" width="500" height="625"></figure>
-    <figure class="polaroid"><img src="images/work-14.jpg" alt="Espace vert aménagé par Clément Paysagisme" width="500" height="625" loading="lazy"></figure>
+    <figure class="polaroid"><img src="https://www.clement-paysagisme.ch/assets/img/work/2.jpg" alt="Terrasse en bois aménagée par Clément Paysagisme" width="500" height="625"></figure>
+    <figure class="polaroid"><img src="https://www.clement-paysagisme.ch/assets/img/work/15.jpg" alt="Piscine et banc en bois aménagés par Clément Paysagisme" width="500" height="625"></figure>
+    <figure class="polaroid"><img src="https://www.clement-paysagisme.ch/assets/img/work/8.jpg" alt="Mur en pierres sèches réalisé par Clément Paysagisme" width="500" height="625"></figure>
+    <figure class="polaroid"><img src="https://www.clement-paysagisme.ch/assets/img/work/19.jpg" alt="Entrée de maison avec escalier et muret réalisés par Clément Paysagisme" width="500" height="625"></figure>
+    <figure class="polaroid"><img src="https://www.clement-paysagisme.ch/assets/img/work/11.jpg" alt="Dallage réalisé par Clément Paysagisme" width="500" height="625" loading="lazy"></figure>
   </div>
 
   <!-- Services -->
@@ -412,7 +413,7 @@ section { padding: 75px 0; }
           <p>Tonte, taille, traitements, plantations au fil des saisons : nous prenons en charge l'entretien de vos espaces verts, pour les particuliers, les communes et les régies.</p>
           <a class="btn btn-principal" href="#contact">Demander un devis →</a>
         </div>
-        <figure class="panneau-photo" style="margin-top:-75px;margin-bottom:-75px"><img src="images/work-16.jpg" alt="Espaces verts entretenus par Clément Paysagisme" loading="lazy" width="800" height="600"></figure>
+        <figure class="panneau-photo"><img src="https://www.clement-paysagisme.ch/assets/img/work/12.jpg" alt="Pelouse rayée et entretenue par Clément Paysagisme" loading="lazy" width="800" height="600"></figure>
       </div>
     </div>
   </section>
@@ -441,7 +442,7 @@ section { padding: 75px 0; }
             <li><strong>2019</strong><span>Premier apprenti</span></li>
           </ol>
         </div>
-        <figure class="a-propos-photo"><img src="images/work-9.jpg" alt="Travail soigné de l'équipe de Clément Paysagisme" loading="lazy" width="640" height="800"></figure>
+        <figure class="a-propos-photo"><img src="https://www.clement-paysagisme.ch/assets/img/work/18.jpg" alt="Piscine et haie aménagées par Clément Paysagisme" loading="lazy" width="640" height="800"></figure>
       </div>
     </div>
   </section>
@@ -552,8 +553,8 @@ const AVIS = [
   "Une jeune entreprise de paysagisme qui connaît son métier."
 ];
 
-/* Photos de chantiers (dossier images/) */
-const PHOTOS = [2, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+/* Photos de chantiers (hébergées sur le site de l'entreprise) */
+const PHOTOS = [2, 15, 18, 19, 12, 8, 11, 14, 16, 10, 4, 5, 7, 13, 9, 17];
 
 /* ---------- Avis ---------- */
 (function () {
@@ -578,14 +579,15 @@ const PHOTOS = [2, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   const total = PHOTOS.length;
   let courant = 0, declencheur = null;
 
-  function alt(i) { return 'Chantier réalisé par Clément Paysagisme, photo ' + (i + 1) + ' sur ' + total; }
+  const DESC = {2:'Terrasse en bois', 15:'Piscine avec banc en bois', 18:'Piscine et haie', 19:'Entrée de maison avec escalier et muret', 12:'Pelouse rayée', 8:'Mur en pierres sèches', 11:'Dallage'};
+  function alt(i) { var d = DESC[PHOTOS[i]] || 'Chantier'; return d + ' réalisé par Clément Paysagisme, photo ' + (i + 1) + ' sur ' + total; }
 
   PHOTOS.forEach(function (n, i) {
     const b = document.createElement('button');
     b.type = 'button';
     b.setAttribute('aria-label', 'Agrandir la photo ' + (i + 1) + ' sur ' + total);
     const im = document.createElement('img');
-    im.src = 'images/work-' + n + '.jpg';
+    im.src = 'https://www.clement-paysagisme.ch/assets/img/work/' + n + '.jpg';
     im.alt = alt(i);
     im.loading = 'lazy';
     b.appendChild(im);
@@ -595,7 +597,7 @@ const PHOTOS = [2, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 
   function afficher(i) {
     courant = (i + total) % total;
-    img.src = 'images/work-' + PHOTOS[courant] + '.jpg';
+    img.src = 'https://www.clement-paysagisme.ch/assets/img/work/' + PHOTOS[courant] + '.jpg';
     img.alt = alt(courant);
     compteur.textContent = (courant + 1) + ' / ' + total;
   }
