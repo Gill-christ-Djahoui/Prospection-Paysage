@@ -12,18 +12,18 @@
 <style>
 :root {
   --parchemin: #fcfaf1;
-  --os: #efe9e0;
+  --os: #edf1e8;
   --blanc: #ffffff;
-  --loam: #c7bcaf;
-  --ecorce: #96897b;
-  --selle: #50463c;
+  --loam: #c9d3c5;
+  --ecorce: #7d887a;
+  --selle: #465144;
   --encre: #211b15;
-  --olive-charbon: #252a23;
-  --olive-profond: #434f40;
-  --sauge: #7a9779;
-  --miel: #e8b672;
-  --miel-fonce: #dba35a;
-  --ble: #f0c891;
+  --vert: #2f5d3a;
+  --vert-fonce: #24492d;
+  --vert-profond: #1c3324;
+  --vert-clair: #e6efe4;
+  --vert-sauge: #7a9779;
+  --texte-clair: #cfe0cc;
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
 }
@@ -58,14 +58,16 @@ section { padding: 75px 0; }
   padding: 15px 30px; border-radius: 3.75px; text-decoration: none; cursor: pointer;
   border: 1px solid transparent; transition: background-color .2s, color .2s;
 }
-.btn-principal { background: var(--miel); color: var(--encre); }
-.btn-principal:hover { background: var(--miel-fonce); }
-.btn-secondaire { background: transparent; color: var(--encre); border-color: var(--encre); }
-.btn-secondaire:hover { background: var(--os); }
+.btn-principal { background: var(--vert); color: #fcfaf1; }
+.btn-principal:hover { background: var(--vert-fonce); }
+.btn-secondaire { background: transparent; color: var(--vert); border-color: var(--vert); }
+.btn-secondaire:hover { background: var(--vert-clair); }
+.fleche { display: inline-block; transition: transform .2s ease; }
+.btn:hover .fleche, a:hover > .fleche { transform: translateX(4px); }
 .btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
   outline: 2px solid var(--encre); outline-offset: 2px;
 }
-.icone { width: 22px; height: 22px; fill: none; stroke: var(--encre); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.icone { width: 22px; height: 22px; fill: none; stroke: var(--vert); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 
 /* Navigation */
 .nav { position: sticky; top: 0; z-index: 50; background: var(--parchemin); border-bottom: 1px solid var(--os); }
@@ -96,7 +98,7 @@ section { padding: 75px 0; }
 .champ-bouton input:focus-visible { outline: none; }
 .champ-bouton:focus-within { outline: 2px solid var(--encre); outline-offset: 2px; }
 .champ-bouton .btn { border-radius: 0 2.75px 2.75px 0; margin: -1px; white-space: nowrap; }
-.confirmation { margin-top: 16px; font-size: 15px; color: var(--olive-profond); min-height: 24px; font-weight: 500; }
+.confirmation { margin-top: 16px; font-size: 15px; color: var(--vert); min-height: 24px; font-weight: 500; }
 .garanties { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 34px; margin: 30px 0 0; padding: 0; list-style: none; }
 .garanties li { display: flex; align-items: center; gap: 9px; font-size: 13px; color: var(--selle); }
 .garanties .icone { width: 20px; height: 20px; }
@@ -108,26 +110,51 @@ section { padding: 75px 0; }
   width: clamp(150px, 20vw, 250px); aspect-ratio: 4 / 5;
 }
 .polaroid img { width: 100%; height: 100%; object-fit: cover; }
-.polaroid:nth-child(1) { transform: rotate(-3deg); margin-right: -34px; margin-top: 30px; }
-.polaroid:nth-child(2) { transform: rotate(2deg); margin-right: -34px; margin-top: -10px; z-index: 2; }
-.polaroid:nth-child(3) { transform: rotate(-1.5deg); margin-right: -34px; margin-top: 34px; z-index: 3; width: clamp(160px, 22vw, 275px); }
-.polaroid:nth-child(4) { transform: rotate(3deg); margin-right: -34px; margin-top: -6px; z-index: 2; }
-.polaroid:nth-child(5) { transform: rotate(-2.5deg); margin-top: 28px; }
+.polaroid:nth-child(1) { --rot: -3deg; --dx: -120px; --dy: 60px; --rot0: -8deg; --i: 0; margin-right: -34px; margin-top: 30px; }
+.polaroid:nth-child(2) { --rot: 2deg; --dx: 120px; --dy: -60px; --rot0: 8deg; --i: 1; margin-right: -34px; margin-top: -10px; z-index: 2; }
+.polaroid:nth-child(3) { --rot: -1.5deg; --dx: -120px; --dy: -60px; --rot0: -8deg; --i: 2; margin-right: -34px; margin-top: 34px; z-index: 3; width: clamp(160px, 22vw, 275px); }
+.polaroid:nth-child(4) { --rot: 3deg; --dx: 120px; --dy: 60px; --rot0: 8deg; --i: 3; margin-right: -34px; margin-top: -6px; z-index: 2; }
+.polaroid:nth-child(5) { --rot: -2.5deg; --dx: -120px; --dy: 60px; --rot0: -8deg; --i: 4; margin-top: 28px; }
+.polaroid { transform: rotate(var(--rot, 0deg)); translate: 0 var(--par, 0px); will-change: transform; backface-visibility: hidden; }
+.js .polaroid {
+  opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--rot0));
+  transition: opacity .9s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--i) * 120ms), transform .9s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--i) * 120ms);
+}
+.js .collage.visible .polaroid { opacity: 1; transform: rotate(var(--rot)); }
+.js .collage.instant .polaroid { transition: none !important; }
+.js .collage.posee .polaroid { transition: transform .4s ease; }
+.js .collage.posee .polaroid:hover { transform: rotate(0deg) scale(1.04); z-index: 10; }
 .bande { background: var(--os); padding-top: 150px; }
 
 /* Services */
-.grille-services { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 56px; border-top: 1px solid var(--os); border-left: 1px solid var(--os); }
-.service { border-right: 1px solid var(--os); border-bottom: 1px solid var(--os); padding: 40px 32px; text-align: center; display: flex; flex-direction: column; align-items: center; }
-.service svg { width: 150px; height: 112px; fill: none; stroke: var(--encre); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 22px; }
-.service h3 { font-family: var(--sans); font-weight: 500; font-size: 17px; line-height: 1.4; margin-bottom: 10px; }
-.service p { font-size: 15px; line-height: 1.6; color: var(--selle); max-width: 300px; }
+.cartes-services { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 56px; }
+.carte-service {
+  background: #ffffff; border: 1px solid var(--vert-clair); border-radius: 7.5px; overflow: hidden;
+  display: flex; flex-direction: column; transition: transform .3s ease, border-color .3s ease;
+}
+.carte-service:hover { border-color: var(--vert-sauge); transform: translateY(-4px); }
+.carte-photo { aspect-ratio: 16 / 9; overflow: hidden; background: var(--vert-clair); }
+.carte-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.carte-service:hover .carte-photo img { transform: scale(1.05); }
+.carte-corps { padding: 36px; display: flex; flex-direction: column; flex: 1; }
+.carte-corps h3 { font-size: 30px; line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 26px; }
+.sous-services { list-style: none; margin: 0 0 28px; padding: 0; display: grid; gap: 22px; }
+.sous-services li { display: flex; gap: 16px; align-items: flex-start; }
+.pastille { width: 56px; height: 56px; border-radius: 50%; background: var(--vert-clair); display: flex; align-items: center; justify-content: center; flex: none; }
+.pastille svg { width: 38px; height: 28px; fill: none; stroke: var(--vert); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.pastille svg * { vector-effect: non-scaling-stroke; }
+.sous-services h4 { font-family: var(--sans); font-weight: 500; font-size: 16px; line-height: 1.4; margin: 2px 0 4px; }
+.sous-services p { font-size: 15px; line-height: 1.6; color: var(--selle); }
+.lien-devis { margin-top: auto; font-weight: 500; font-size: 15px; color: var(--vert); text-decoration: none; align-self: flex-start; }
+.lien-devis:hover { color: var(--vert-fonce); }
 
 /* Panneau sombre */
-.panneau { background: var(--olive-charbon); border-radius: 7.5px; padding: 45px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 50px; align-items: center; color: var(--parchemin); }
-.panneau .surtitre { text-align: left; color: var(--loam); }
+.panneau { background: var(--vert-profond); border-radius: 7.5px; padding: 45px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 50px; align-items: center; color: var(--parchemin); }
+.panneau .surtitre { text-align: left; color: var(--texte-clair); }
+.panneau .btn-principal { border-color: var(--vert-sauge); }
 .panneau h2 { color: var(--parchemin); font-size: 44px; line-height: 1.12; letter-spacing: -0.5px; margin-bottom: 22px; }
-.panneau p { color: var(--loam); font-size: 17px; line-height: 1.65; margin-bottom: 30px; max-width: 520px; }
-.panneau-photo { margin: -75px -75px -75px 0; border: 3px solid var(--parchemin); transform: rotate(1.5deg); aspect-ratio: 4 / 3; background: var(--olive-profond); }
+.panneau p { color: var(--texte-clair); font-size: 17px; line-height: 1.65; margin-bottom: 30px; max-width: 520px; }
+.panneau-photo { margin: -75px -75px -75px 0; border: 3px solid var(--parchemin); transform: rotate(1.5deg); aspect-ratio: 4 / 3; background: var(--vert-profond); }
 .panneau-photo img { width: 100%; height: 100%; object-fit: cover; }
 
 /* Réalisations */
@@ -137,7 +164,7 @@ section { padding: 75px 0; }
 .galerie button:hover img { transform: scale(1.04); }
 
 /* Visionneuse */
-.visionneuse { position: fixed; inset: 0; z-index: 100; background: rgba(33, 27, 21, .94); display: none; align-items: center; justify-content: center; padding: 60px 70px; }
+.visionneuse { position: fixed; inset: 0; z-index: 100; background: rgba(28, 51, 36, .94); display: none; align-items: center; justify-content: center; padding: 60px 70px; }
 .visionneuse.ouverte { display: flex; }
 .visionneuse img { max-height: 100%; max-width: 100%; object-fit: contain; border: 3px solid var(--parchemin); }
 .visionneuse button { position: absolute; background: var(--parchemin); border: 0; border-radius: 3.75px; width: 46px; height: 46px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
@@ -149,10 +176,10 @@ section { padding: 75px 0; }
 /* À propos */
 .a-propos { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 50px; }
 .a-propos .texte p { font-size: 17px; line-height: 1.7; color: var(--selle); margin-bottom: 16px; }
-.frise { list-style: none; margin: 34px 0 0; padding: 0; border-top: 1px solid var(--olive-profond); display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.frise { list-style: none; margin: 34px 0 0; padding: 0; border-top: 1px solid var(--vert-sauge); display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .frise li { padding-top: 18px; position: relative; }
-.frise li::before { content: ""; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; background: var(--miel); border: 1px solid var(--encre); border-radius: 50%; }
-.frise strong { display: block; font-family: var(--serif); font-weight: 500; font-size: 28px; line-height: 1.2; }
+.frise li::before { content: ""; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; background: var(--vert); border: 1px solid var(--vert); border-radius: 50%; }
+.frise strong { color: var(--vert); display: block; font-family: var(--serif); font-weight: 500; font-size: 28px; line-height: 1.2; }
 .frise span { font-size: 14px; color: var(--selle); line-height: 1.5; display: block; }
 .a-propos-photo { margin: 0; border: 3px solid var(--parchemin); transform: rotate(-1.5deg); aspect-ratio: 4 / 5; background: var(--os); }
 .a-propos-photo img { width: 100%; height: 100%; object-fit: cover; }
@@ -161,16 +188,17 @@ section { padding: 75px 0; }
 .avis-liste { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 50px; }
 .carte-avis { border: 1px solid var(--loam); border-radius: 7.5px; padding: 40px; background: var(--parchemin); }
 .etoiles { display: flex; gap: 4px; margin-bottom: 20px; }
-.etoiles svg { width: 20px; height: 20px; fill: var(--miel); stroke: var(--miel-fonce); stroke-width: 1; }
+.etoiles svg { width: 20px; height: 20px; fill: var(--vert); stroke: var(--vert); stroke-width: 1; }
 .carte-avis blockquote { margin: 0 0 22px; font-family: var(--serif); font-size: 24px; line-height: 1.35; letter-spacing: -0.2px; }
 .carte-avis .legende { font-size: 13px; }
 .lien-avis { text-align: center; margin-top: 36px; }
 .lien-avis a { font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--encre); padding-bottom: 2px; }
 
 /* Appel final */
-.appel { background: var(--os); text-align: center; }
+.appel { background: var(--vert-clair); text-align: center; }
 .appel h2 { font-size: 50px; line-height: 1.1; letter-spacing: -0.55px; margin-bottom: 16px; }
 .appel p { font-size: 19px; color: var(--selle); margin-bottom: 32px; }
+.appel .btn-secondaire:hover { background: #ffffff; }
 .appel .boutons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
 /* Contact */
@@ -194,27 +222,34 @@ section { padding: 75px 0; }
 .formulaire .actions { grid-column: 1 / -1; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
 
 /* Pied de page */
-.pied { background: var(--os); padding: 60px 0 28px; }
+.pied { background: var(--vert-profond); color: #fcfaf1; padding: 60px 0 28px; }
 .pied-grille { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; }
-.pied h3 { font-family: var(--sans); font-weight: 500; font-size: 15px; margin-bottom: 14px; }
-.pied p, .pied a { font-size: 15px; color: var(--selle); line-height: 1.8; }
-.pied a { display: block; text-decoration: none; }
-.pied a:hover { color: var(--encre); }
-.pied .marque { display: inline-block; margin-bottom: 12px; color: var(--encre); font-size: 22px; line-height: 1.3; }
-.pied-bas { border-top: 1px solid var(--loam); margin-top: 40px; padding-top: 22px; display: flex; flex-direction: column; gap: 6px; }
-.pied-bas .legende { font-size: 12px; color: var(--selle); }
-.pied-bas .maquette { font-size: 11px; color: var(--ecorce); }
+.pied h3 { font-family: var(--sans); font-weight: 500; font-size: 15px; margin-bottom: 14px; color: #fcfaf1; }
+.pied p { font-size: 15px; color: #fcfaf1; line-height: 1.8; }
+.pied a { display: block; width: fit-content; font-size: 15px; color: var(--texte-clair); line-height: 1.8; text-decoration: none; }
+.pied a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.pied a:focus-visible, .pied button:focus-visible { outline-color: #fcfaf1; }
+.pied .marque { display: inline-block; margin-bottom: 12px; color: #fcfaf1; font-size: 22px; line-height: 1.3; }
+.pied-bas { border-top: 1px solid rgba(255, 255, 255, 0.12); margin-top: 40px; padding-top: 22px; display: flex; flex-direction: column; gap: 6px; }
+.pied-bas .legende { font-size: 12px; color: #fcfaf1; }
+.pied-bas .maquette { font-size: 11px; color: rgba(255, 255, 255, 0.5); }
 
 /* Barre mobile */
 .barre-mobile { display: none; }
 
 /* Apparitions */
-.js .apparait { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.js .apparait { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
 .js .apparait.visible { opacity: 1; transform: none; }
+.js .apparait.instant { transition: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .js .apparait { opacity: 1; transform: none; transition: none; }
+  .js .polaroid { opacity: 1; transform: rotate(var(--rot)); transition: none; }
+  .js .collage.posee .polaroid { transition: none; }
+  .carte-service, .carte-photo img, .fleche { transition: none; }
 }
+
+@media (max-width: 760px) { .cartes-services { grid-template-columns: 1fr; } }
 
 /* Tablette */
 @media (max-width: 1000px) {
@@ -223,7 +258,6 @@ section { padding: 75px 0; }
   .nav-actions { gap: 10px; }
   .heros h1 { font-size: 54px; }
   .titre-section { font-size: 40px; }
-  .grille-services { grid-template-columns: repeat(2, 1fr); }
   .galerie { grid-template-columns: repeat(3, 1fr); }
   .panneau { grid-template-columns: 1fr; padding: 40px 32px; }
   .panneau-photo { margin: 0 -50px -75px 0; }
@@ -258,12 +292,13 @@ section { padding: 75px 0; }
   .polaroid:nth-child(4) { margin: -4vw 0 0 12vw; }
   .polaroid:nth-child(5) { margin: -2vw 0 0 -5vw; }
   .bande { padding-top: 110px; }
-  .grille-services { grid-template-columns: 1fr; margin-top: 40px; }
-  .service { padding: 32px 22px; }
+  .cartes-services { margin-top: 40px; }
+  .carte-corps { padding: 28px 22px; }
+  .carte-corps h3 { font-size: 26px; }
   .panneau { padding: 30px 22px; gap: 34px; }
   .panneau-photo { margin: 0 -22px -52px 12px; }
   .galerie { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 36px; }
-  .frise { grid-template-columns: 1fr; gap: 6px; border-top: 0; border-left: 1px solid var(--olive-profond); padding-left: 24px; }
+  .frise { grid-template-columns: 1fr; gap: 6px; border-top: 0; border-left: 1px solid var(--vert-sauge); padding-left: 24px; }
   .frise li { padding: 8px 0; }
   .frise li::before { top: 16px; left: -29px; }
   .avis-liste { grid-template-columns: 1fr; }
@@ -314,7 +349,7 @@ section { padding: 75px 0; }
     </nav>
     <div class="nav-actions">
       <a class="btn btn-secondaire" href="tel:+41798166202">079 816 62 02</a>
-      <a class="btn btn-principal" href="#contact">Demander un devis →</a>
+      <a class="btn btn-principal" href="#contact">Demander un devis <span class="fleche" aria-hidden="true">→</span></a>
       <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile">
         <svg class="icone"><use href="#i-menu"/></svg>
       </button>
@@ -326,7 +361,7 @@ section { padding: 75px 0; }
     <a href="#a-propos">À propos</a>
     <a href="#avis">Avis</a>
     <a href="#contact">Contact</a>
-    <a class="btn btn-principal" href="#contact">Demander un devis →</a>
+    <a class="btn btn-principal" href="#contact">Demander un devis <span class="fleche" aria-hidden="true">→</span></a>
   </div>
 </header>
 
@@ -341,7 +376,7 @@ section { padding: 75px 0; }
       <form class="champ-bouton" id="form-rappel" novalidate>
         <label class="sr-only" for="rappel" style="position:absolute;left:-9999px">Votre téléphone ou votre e-mail</label>
         <input id="rappel" name="rappel" type="text" placeholder="Votre téléphone ou votre e-mail" autocomplete="off">
-        <button class="btn btn-principal" type="submit">Être rappelé →</button>
+        <button class="btn btn-principal" type="submit">Être rappelé <span class="fleche" aria-hidden="true">→</span></button>
       </form>
       <p class="confirmation" id="confirmation-rappel" role="status" aria-live="polite"></p>
       <ul class="garanties">
@@ -355,7 +390,7 @@ section { padding: 75px 0; }
   </div>
 
   <!-- Collage -->
-  <div class="collage" aria-label="Quelques chantiers de Clément Paysagisme">
+  <div class="collage" id="collage" aria-label="Quelques chantiers de Clément Paysagisme">
     <figure class="polaroid"><img src="https://www.clement-paysagisme.ch/assets/img/work/2.jpg" alt="Terrasse en bois aménagée par Clément Paysagisme" width="500" height="625"></figure>
     <figure class="polaroid"><img src="https://www.clement-paysagisme.ch/assets/img/work/15.jpg" alt="Piscine et banc en bois aménagés par Clément Paysagisme" width="500" height="625"></figure>
     <figure class="polaroid"><img src="https://www.clement-paysagisme.ch/assets/img/work/8.jpg" alt="Mur en pierres sèches réalisé par Clément Paysagisme" width="500" height="625"></figure>
@@ -368,37 +403,31 @@ section { padding: 75px 0; }
     <div class="conteneur apparait">
       <p class="surtitre">Nos services</p>
       <h2 class="titre-section">Tout pour votre extérieur, de la tonte au mur en pierre.</h2>
-      <div class="grille-services">
-        <a class="service" href="#contact" style="text-decoration:none;color:inherit">
-          <svg viewBox="0 0 150 112" aria-hidden="true"><path d="M10 92h130"/><path d="M28 92c2-10 3-16 1-24M36 92c0-8 2-14 6-20M118 92c-2-9-1-15 3-22M128 92c0-6 1-11 4-15"/><rect x="52" y="52" width="46" height="22" rx="3"/><path d="M98 58l22-30h10M52 62h-8l-8-12"/><circle cx="62" cy="82" r="9"/><circle cx="90" cy="82" r="9"/><circle cx="62" cy="82" r="2"/><circle cx="90" cy="82" r="2"/></svg>
-          <h3>Tonte et gazon →</h3>
-          <p>Tonte, semis de gazon et traitement pour une pelouse soignée.</p>
-        </a>
-        <a class="service" href="#contact" style="text-decoration:none;color:inherit">
-          <svg viewBox="0 0 150 112" aria-hidden="true"><path d="M10 100h60"/><path d="M40 100V62M40 72l-14-12M40 80l14-14"/><path d="M26 54c-12-4-16-18-8-26 4-14 22-18 32-8 12-6 26 4 24 16 8 8 4 22-8 24-6 6-16 6-22 0-6 4-14 2-18-6z"/><path d="M96 50l30 34M126 50 96 84"/><circle cx="92" cy="90" r="8"/><circle cx="130" cy="90" r="8"/><path d="M94 82l12-12M128 82l-12-12"/></svg>
-          <h3>Taille et élagage →</h3>
-          <p>Taille des arbres, arbustes et haies, et élagage en toute sécurité.</p>
-        </a>
-        <a class="service" href="#contact" style="text-decoration:none;color:inherit">
-          <svg viewBox="0 0 150 112" aria-hidden="true"><path d="M10 96h130"/><path d="M52 96V66M52 76c-14 0-20-10-20-22 12 0 20 8 20 22zM52 70c0-14 8-22 22-22 0 14-8 22-22 22z"/><path d="M104 28v34M96 28h16"/><path d="M96 62h16l-2 24a6 6 0 0 1-12 0z"/><path d="M104 62v26"/></svg>
-          <h3>Plantation et dessouchage →</h3>
-          <p>Plantation de nouveaux végétaux et dessouchage des souches.</p>
-        </a>
-        <a class="service" href="#contact" style="text-decoration:none;color:inherit">
-          <svg viewBox="0 0 150 112" aria-hidden="true"><rect x="28" y="24" width="94" height="74" rx="5"/><path d="M28 44h94M54 14v18M96 14v18"/><path d="M75 90c-14-4-20-14-18-28 12 0 20 8 18 28zM75 90c-2-14 4-24 18-26 2 14-4 24-18 26z"/><path d="M75 90V70"/></svg>
-          <h3>Contrat d'entretien à l'année →</h3>
-          <p>Un entretien régulier de vos espaces verts, toute l'année, sous contrat.</p>
-        </a>
-        <a class="service" href="#contact" style="text-decoration:none;color:inherit">
-          <svg viewBox="0 0 150 112" aria-hidden="true"><path d="M10 98h130"/><path d="M26 98V30l7-8 7 8v68M110 98V30l7-8 7 8v68"/><path d="M40 44h70M40 80h70"/><path d="M40 44l70 36M110 44 40 80"/><path d="M40 62h70"/></svg>
-          <h3>Clôtures, treillis et brise-vue →</h3>
-          <p>Clôtures, treillis et brise-vue pour délimiter et protéger votre jardin.</p>
-        </a>
-        <a class="service" href="#contact" style="text-decoration:none;color:inherit">
-          <svg viewBox="0 0 150 112" aria-hidden="true"><path d="M10 98h130"/><rect x="24" y="76" width="40" height="22"/><rect x="64" y="76" width="40" height="22"/><rect x="104" y="76" width="22" height="22"/><rect x="44" y="54" width="40" height="22"/><rect x="84" y="54" width="40" height="22"/><rect x="24" y="54" width="20" height="22"/><rect x="64" y="32" width="40" height="22"/><rect x="24" y="32" width="40" height="22"/></svg>
-          <h3>Maçonnerie, pavés et dallages →</h3>
-          <p>Maçonnerie paysagère, terrassement, pavés, dallages et murs.</p>
-        </a>
+      <div class="cartes-services">
+        <article class="carte-service">
+          <div class="carte-photo"><img src="https://www.clement-paysagisme.ch/assets/img/work/12.jpg" alt="Pelouse rayée et entretenue par Clément Paysagisme" loading="lazy" width="800" height="450"></div>
+          <div class="carte-corps">
+            <h3>Entretien des espaces verts</h3>
+            <ul class="sous-services">
+            <li><span class="pastille"><svg viewBox="0 0 150 112" aria-hidden="true"><path d="M10 92h130"/><path d="M28 92c2-10 3-16 1-24M36 92c0-8 2-14 6-20M118 92c-2-9-1-15 3-22M128 92c0-6 1-11 4-15"/><rect x="52" y="52" width="46" height="22" rx="3"/><path d="M98 58l22-30h10M52 62h-8l-8-12"/><circle cx="62" cy="82" r="9"/><circle cx="90" cy="82" r="9"/><circle cx="62" cy="82" r="2"/><circle cx="90" cy="82" r="2"/></svg></span><div><h4>Tonte et gazon</h4><p>Tonte, semis de gazon et traitement pour une pelouse soignée.</p></div></li>
+            <li><span class="pastille"><svg viewBox="0 0 150 112" aria-hidden="true"><path d="M10 100h60"/><path d="M40 100V62M40 72l-14-12M40 80l14-14"/><path d="M26 54c-12-4-16-18-8-26 4-14 22-18 32-8 12-6 26 4 24 16 8 8 4 22-8 24-6 6-16 6-22 0-6 4-14 2-18-6z"/><path d="M96 50l30 34M126 50 96 84"/><circle cx="92" cy="90" r="8"/><circle cx="130" cy="90" r="8"/><path d="M94 82l12-12M128 82l-12-12"/></svg></span><div><h4>Taille et élagage</h4><p>Taille des arbres, arbustes et haies, et élagage en toute sécurité.</p></div></li>
+            <li><span class="pastille"><svg viewBox="0 0 150 112" aria-hidden="true"><rect x="28" y="24" width="94" height="74" rx="5"/><path d="M28 44h94M54 14v18M96 14v18"/><path d="M75 90c-14-4-20-14-18-28 12 0 20 8 18 28zM75 90c-2-14 4-24 18-26 2 14-4 24-18 26z"/><path d="M75 90V70"/></svg></span><div><h4>Contrat d'entretien à l'année</h4><p>Un entretien régulier de vos espaces verts, toute l'année, sous contrat.</p></div></li>
+            </ul>
+            <a class="lien-devis" href="#contact">Demander un devis <span class="fleche" aria-hidden="true">→</span></a>
+          </div>
+        </article>
+        <article class="carte-service">
+          <div class="carte-photo"><img src="https://www.clement-paysagisme.ch/assets/img/work/8.jpg" alt="Mur en pierres sèches réalisé par Clément Paysagisme" loading="lazy" width="800" height="450"></div>
+          <div class="carte-corps">
+            <h3>Créations et aménagements extérieurs</h3>
+            <ul class="sous-services">
+            <li><span class="pastille"><svg viewBox="0 0 150 112" aria-hidden="true"><path d="M10 98h130"/><rect x="24" y="76" width="40" height="22"/><rect x="64" y="76" width="40" height="22"/><rect x="104" y="76" width="22" height="22"/><rect x="44" y="54" width="40" height="22"/><rect x="84" y="54" width="40" height="22"/><rect x="24" y="54" width="20" height="22"/><rect x="64" y="32" width="40" height="22"/><rect x="24" y="32" width="40" height="22"/></svg></span><div><h4>Maçonnerie, pavés et dallages</h4><p>Maçonnerie paysagère, pavés, dallages et murs.</p></div></li>
+            <li><span class="pastille"><svg viewBox="0 0 150 112" aria-hidden="true"><path d="M10 98h130"/><path d="M26 98V30l7-8 7 8v68M110 98V30l7-8 7 8v68"/><path d="M40 44h70M40 80h70"/><path d="M40 44l70 36M110 44 40 80"/><path d="M40 62h70"/></svg></span><div><h4>Clôtures, treillis et brise-vue</h4><p>Clôtures, treillis et brise-vue pour délimiter et protéger votre jardin.</p></div></li>
+            <li><span class="pastille"><svg viewBox="0 0 150 112" aria-hidden="true"><path d="M10 96h130"/><path d="M52 96V66M52 76c-14 0-20-10-20-22 12 0 20 8 20 22zM52 70c0-14 8-22 22-22 0 14-8 22-22 22z"/><path d="M104 28v34M96 28h16"/><path d="M96 62h16l-2 24a6 6 0 0 1-12 0z"/><path d="M104 62v26"/></svg></span><div><h4>Plantation, terrassement et dessouchage</h4><p>Plantation, terrassement et dessouchage selon votre projet.</p></div></li>
+            </ul>
+            <a class="lien-devis" href="#contact">Demander un devis <span class="fleche" aria-hidden="true">→</span></a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -411,7 +440,7 @@ section { padding: 75px 0; }
           <p class="surtitre">Entretien à l'année</p>
           <h2>Votre jardin entretenu toute l'année, sans y penser.</h2>
           <p>Tonte, taille, traitements, plantations au fil des saisons : nous prenons en charge l'entretien de vos espaces verts, pour les particuliers, les communes et les régies.</p>
-          <a class="btn btn-principal" href="#contact">Demander un devis →</a>
+          <a class="btn btn-principal" href="#contact">Demander un devis <span class="fleche" aria-hidden="true">→</span></a>
         </div>
         <figure class="panneau-photo"><img src="https://www.clement-paysagisme.ch/assets/img/work/12.jpg" alt="Pelouse rayée et entretenue par Clément Paysagisme" loading="lazy" width="800" height="600"></figure>
       </div>
@@ -463,7 +492,7 @@ section { padding: 75px 0; }
       <h2>Un projet pour votre jardin ?</h2>
       <p>Parlons-en. Le devis est gratuit.</p>
       <div class="boutons">
-        <a class="btn btn-principal" href="tel:+41798166202">Appeler le 079 816 62 02 →</a>
+        <a class="btn btn-principal" href="tel:+41798166202">Appeler le 079 816 62 02 <span class="fleche" aria-hidden="true">→</span></a>
         <a class="btn btn-secondaire" href="mailto:clement.paysagisme@gmail.com">Écrire un e-mail</a>
       </div>
     </div>
@@ -492,7 +521,7 @@ section { padding: 75px 0; }
         <div class="large"><label for="mail">E-mail</label><input id="mail" name="mail" type="email" autocomplete="email" placeholder="Votre adresse e-mail"></div>
         <div class="large"><label for="projet">Votre projet</label><textarea id="projet" name="projet" placeholder="Décrivez-nous votre projet"></textarea></div>
         <div class="actions">
-          <button class="btn btn-principal" type="submit">Envoyer →</button>
+          <button class="btn btn-principal" type="submit">Envoyer <span class="fleche" aria-hidden="true">→</span></button>
           <span class="confirmation" id="confirmation-contact" role="status" aria-live="polite" style="margin:0"></span>
         </div>
       </form>
@@ -523,7 +552,7 @@ section { padding: 75px 0; }
       </div>
     </div>
     <div class="pied-bas">
-      <span class="legende" style="font-size:12px;color:var(--selle)">© 2026 Clément Paysagisme Sàrl</span>
+      <span class="legende">© 2026 Clément Paysagisme Sàrl</span>
       <span class="maquette">Maquette de démonstration réalisée par gdjahoui.com</span>
     </div>
   </div>
@@ -532,7 +561,7 @@ section { padding: 75px 0; }
 <!-- Barre d'appel mobile -->
 <div class="barre-mobile">
   <a class="btn btn-secondaire" href="tel:+41798166202">Appeler</a>
-  <a class="btn btn-principal" href="#contact">Devis →</a>
+  <a class="btn btn-principal" href="#contact">Devis <span class="fleche" aria-hidden="true">→</span></a>
 </div>
 
 <!-- Visionneuse -->
@@ -649,12 +678,95 @@ document.getElementById('form-contact').addEventListener('submit', function (e) 
 
 /* ---------- Apparitions au défilement ---------- */
 (function () {
-  const els = document.querySelectorAll('.apparait');
-  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('visible'); }); return; }
+  const els = Array.prototype.slice.call(document.querySelectorAll('.apparait'));
+  function montrer(el, instantane) {
+    if (instantane) el.classList.add('instant');
+    el.classList.add('visible');
+  }
+  // Révèle tout ce qui est déjà visible ou dépassé (aucune zone vide, même en défilant très vite)
+  function balayer() {
+    els.forEach(function (el) {
+      if (el.classList.contains('visible')) return;
+      const r = el.getBoundingClientRect();
+      if (r.bottom < 0) montrer(el, true);
+      else if (r.top < window.innerHeight) montrer(el, false);
+    });
+  }
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { montrer(e, true); }); return; }
   const obs = new IntersectionObserver(function (entrees) {
-    entrees.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('visible'); obs.unobserve(en.target); } });
-  }, { threshold: 0.08 });
+    entrees.forEach(function (en) {
+      if (en.isIntersecting) { montrer(en.target, false); obs.unobserve(en.target); }
+      else if (en.boundingClientRect.bottom < 0) { montrer(en.target, true); obs.unobserve(en.target); }
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
   els.forEach(function (e) { obs.observe(e); });
+
+  let minuterie;
+  window.addEventListener('scroll', function () { clearTimeout(minuterie); minuterie = setTimeout(balayer, 120); }, { passive: true });
+  window.addEventListener('load', balayer);
+  window.addEventListener('resize', balayer);
+
+  // Lien d'ancre (clic ou adresse avec #) : la cible et tout ce qui la précède sont visibles immédiatement
+  function reveler(id) {
+    const cible = id && document.getElementById(id);
+    if (!cible) return;
+    els.forEach(function (e) {
+      if (cible.contains(e) || (cible.compareDocumentPosition(e) & Node.DOCUMENT_POSITION_PRECEDING)) montrer(e, true);
+    });
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function () { reveler(a.getAttribute('href').slice(1)); });
+  });
+  if (location.hash) reveler(decodeURIComponent(location.hash.slice(1)));
+})();
+
+/* ---------- Collage : entrée en alternance et effet de profondeur ---------- */
+(function () {
+  const collage = document.getElementById('collage');
+  if (!collage) return;
+  const photos = Array.prototype.slice.call(collage.querySelectorAll('.polaroid'));
+  const reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let attente = false;
+
+  function profondeur() {
+    attente = false;
+    const r = collage.getBoundingClientRect(), H = window.innerHeight;
+    if (r.bottom < -300 || r.top > H + 300) return;
+    const s = Math.max(-1, Math.min(1, (H / 2 - (r.top + r.height / 2)) / H));
+    photos.forEach(function (p, i) {
+      // photos impaires (1, 3, 5) : elles descendent ; paires (2, 4) : elles remontent. 25 px au maximum.
+      const sens = (i % 2 === 0) ? 1 : -1;
+      p.style.setProperty('--par', (sens * s * 25).toFixed(1) + 'px');
+    });
+  }
+  if (!reduit) {
+    window.addEventListener('scroll', function () { if (!attente) { attente = true; requestAnimationFrame(profondeur); } }, { passive: true });
+    window.addEventListener('resize', profondeur);
+    profondeur();
+  }
+
+  function poser(instantane) {
+    if (reduit) { collage.classList.add('visible', 'instant', 'posee'); return; }
+    if (instantane) {
+      collage.classList.add('visible', 'instant');
+      setTimeout(function () { collage.classList.remove('instant'); collage.classList.add('posee'); }, 100);
+    } else {
+      collage.classList.add('visible');
+      setTimeout(function () { collage.classList.add('posee'); }, 4 * 120 + 900 + 80);
+    }
+  }
+  if (!('IntersectionObserver' in window)) { poser(true); return; }
+  const obs = new IntersectionObserver(function (entrees) {
+    entrees.forEach(function (en) {
+      if (en.isIntersecting) { poser(false); obs.disconnect(); }
+      else if (en.boundingClientRect.bottom < 0) { poser(true); obs.disconnect(); }
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+  obs.observe(collage);
+  // filet de sécurité : jamais de collage vide
+  window.addEventListener('scroll', function () {
+    if (!collage.classList.contains('visible') && collage.getBoundingClientRect().top < window.innerHeight) { poser(collage.getBoundingClientRect().bottom < 0); obs.disconnect(); }
+  }, { passive: true });
 })();
 </script>
 </body>
