@@ -28,7 +28,7 @@
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
 }
 *, *::before, *::after { box-sizing: border-box; }
-html { overflow-x: clip; scroll-behavior: smooth; scroll-padding-top: 84px; }
+html { overflow-x: clip; scroll-behavior: smooth; scroll-padding-top: 92px; }
 body {
   margin: 0; background: var(--parchemin); color: var(--encre);
   font-family: var(--sans); font-size: 16px; line-height: 1.65; font-weight: 400;
@@ -53,83 +53,99 @@ section { padding: 75px 0; }
 
 /* Boutons */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  font-family: var(--sans); font-weight: 500; font-size: 15px; line-height: 1.4;
-  padding: 15px 30px; border-radius: 3.75px; text-decoration: none; cursor: pointer;
-  border: 1px solid transparent; transition: background-color .2s, color .2s;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: var(--sans); font-weight: 500; font-size: 15px; line-height: 1.2; letter-spacing: -0.1px;
+  min-height: 50px; padding: 0 26px; border-radius: 10px; text-decoration: none; cursor: pointer; white-space: nowrap;
+  border: 1px solid transparent; transition: background-color .2s, color .2s, border-color .2s;
 }
 .btn-principal { background: var(--vert); color: #fcfaf1; }
 .btn-principal:hover { background: var(--vert-fonce); }
 .btn-secondaire { background: transparent; color: var(--vert); border-color: var(--vert); }
 .btn-secondaire:hover { background: var(--vert-clair); }
+.btn .icone { width: 18px; height: 18px; stroke: currentColor; }
 .fleche { display: inline-block; transition: transform .2s ease; }
 .btn:hover .fleche, a:hover > .fleche { transform: translateX(4px); }
-.btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-  outline: 2px solid var(--encre); outline-offset: 2px;
-}
+.btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--vert); outline-offset: 3px; }
 .icone { width: 22px; height: 22px; fill: none; stroke: var(--vert); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 
+/* Barre d'informations */
+.topbar { background: var(--vert-profond); color: var(--texte-clair); font-size: 13px; }
+.topbar-interieur { display: flex; justify-content: space-between; align-items: center; gap: 24px; min-height: 42px; }
+.topbar ul { display: flex; gap: 28px; margin: 0; padding: 0; list-style: none; }
+.topbar li, .topbar a { display: inline-flex; align-items: center; gap: 8px; color: var(--texte-clair); text-decoration: none; }
+.topbar a:hover { color: #fcfaf1; text-decoration: underline; text-underline-offset: 3px; }
+.topbar .icone { width: 16px; height: 16px; stroke: var(--vert-sauge); }
+
 /* Navigation */
-.nav { position: sticky; top: 0; z-index: 50; background: var(--parchemin); border-bottom: 1px solid var(--os); }
-.nav-interieur { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 24px; }
-.marque { font-family: var(--serif); font-weight: 500; font-size: 22px; letter-spacing: -0.3px; text-decoration: none; white-space: nowrap; }
-.nav-liens { display: flex; gap: 32px; }
-.nav-liens a { font-size: 15px; font-weight: 500; text-decoration: none; color: var(--selle); }
-.nav-liens a:hover { color: var(--encre); }
-.nav-actions { display: flex; gap: 12px; align-items: center; }
-.nav-actions .btn { padding: 11px 20px; }
-.burger { display: none; background: none; border: 1px solid var(--encre); border-radius: 3.75px; width: 44px; height: 44px; padding: 0; cursor: pointer; align-items: center; justify-content: center; }
-.menu-mobile { display: none; border-top: 1px solid var(--os); background: var(--parchemin); padding: 12px 24px 24px; }
-.menu-mobile a { display: block; padding: 14px 0; text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--os); }
-.menu-mobile .btn { margin-top: 18px; display: flex; border-bottom: 1px solid transparent; }
-.menu-mobile.ouvert { display: block; }
+.nav { position: sticky; top: 0; z-index: 80; background: var(--parchemin); border-bottom: 1px solid transparent; transition: background-color .3s, border-color .3s; }
+.nav.scrolle { background: rgba(252, 250, 241, .88); -webkit-backdrop-filter: saturate(160%) blur(14px); backdrop-filter: saturate(160%) blur(14px); border-bottom-color: var(--loam); }
+.nav-interieur { display: grid; grid-template-columns: auto 1fr auto; align-items: center; height: 82px; gap: 28px; transition: height .3s ease; }
+.nav.scrolle .nav-interieur { height: 68px; }
+.marque { display: flex; flex-direction: column; text-decoration: none; line-height: 1.05; }
+.marque-nom { font-family: var(--serif); font-weight: 500; font-size: 25px; letter-spacing: -0.5px; color: var(--encre); white-space: nowrap; }
+.marque-sous { font-size: 10.5px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--vert); margin-top: 5px; white-space: nowrap; }
+.nav-liens { display: flex; gap: 2px; justify-self: center; }
+.nav-liens a { position: relative; padding: 10px 15px; border-radius: 9px; font-size: 15px; font-weight: 500; text-decoration: none; color: var(--selle); transition: background-color .2s, color .2s; }
+.nav-liens a:hover { background: var(--vert-clair); color: var(--encre); }
+.nav-liens a.actif { background: var(--vert-clair); color: var(--vert); }
+.nav-actions { display: flex; gap: 10px; align-items: center; }
+.nav-actions .btn { min-height: 46px; padding: 0 20px; }
+.burger { display: none; width: 46px; height: 46px; border: 1px solid var(--loam); border-radius: 10px; background: #ffffff; padding: 0; cursor: pointer; position: relative; }
+.burger span { position: absolute; left: 13px; right: 13px; height: 1.5px; background: var(--encre); border-radius: 2px; transition: transform .3s ease, opacity .2s; }
+.burger span:nth-child(1) { top: 16px; }
+.burger span:nth-child(2) { top: 22px; }
+.burger span:nth-child(3) { top: 28px; }
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* Menu mobile plein écran */
+.menu-mobile { position: fixed; inset: 0; z-index: 70; background: var(--parchemin); padding: 96px 24px 28px; display: flex; flex-direction: column; overflow-y: auto; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity .3s ease, transform .3s ease, visibility .3s; }
+.menu-mobile.ouvert { opacity: 1; visibility: visible; transform: none; }
+.menu-mobile ol { list-style: none; margin: 0; padding: 0; }
+.menu-mobile ol a { display: flex; align-items: baseline; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--loam); text-decoration: none; font-family: var(--serif); font-weight: 500; font-size: 32px; letter-spacing: -0.5px; line-height: 1.1; }
+.menu-mobile ol a small { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: .08em; color: var(--vert); min-width: 22px; }
+.menu-bas { margin-top: auto; padding-top: 28px; display: grid; gap: 12px; }
+.menu-bas .btn { width: 100%; }
+.menu-bas p { font-size: 14px; color: var(--selle); text-align: center; }
+body.menu-ouvert { overflow: hidden; }
 
 /* Héros */
 .heros { padding: 80px 0 0; text-align: center; }
+.badge { display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; border: 1px solid var(--loam); border-radius: 100px; background: #ffffff; font-size: 12.5px; letter-spacing: 0.058em; text-transform: uppercase; color: var(--selle); margin-bottom: 28px; }
+.badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--vert); }
 .heros h1 { font-size: 68px; line-height: 1.0; letter-spacing: -0.75px; max-width: 900px; margin: 0 auto 26px; }
-.heros .sous-titre { max-width: 640px; margin: 0 auto 34px; }
-.champ-bouton {
-  display: flex; max-width: 540px; margin: 0 auto; border: 1px solid var(--encre); border-radius: 3.75px; background: var(--parchemin);
-}
-.champ-bouton input {
-  flex: 1; min-width: 0; border: 0; background: transparent; padding: 0 18px; font: inherit; font-size: 15px; color: var(--encre);
-}
+.heros .sous-titre { max-width: 640px; margin: 0 auto 36px; }
+.champ-bouton { display: flex; align-items: center; max-width: 580px; margin: 0 auto; padding: 6px; background: #ffffff; border: 1px solid var(--loam); border-radius: 14px; transition: border-color .2s, box-shadow .2s; }
+.champ-bouton:focus-within { border-color: var(--vert); box-shadow: 0 0 0 4px rgba(47, 93, 58, .12); }
+.champ-bouton input { flex: 1; min-width: 0; height: 50px; border: 0; background: transparent; padding: 0 16px; font: inherit; font-size: 16px; color: var(--encre); }
 .champ-bouton input::placeholder { color: var(--ecorce); }
 .champ-bouton input:focus-visible { outline: none; }
-.champ-bouton:focus-within { outline: 2px solid var(--encre); outline-offset: 2px; }
-.champ-bouton .btn { border-radius: 0 2.75px 2.75px 0; margin: -1px; white-space: nowrap; }
-.confirmation { margin-top: 16px; font-size: 15px; color: var(--vert); min-height: 24px; font-weight: 500; }
+.champ-bouton .btn { border-radius: 9px; min-height: 50px; }
+.confirmation { margin-top: 16px; font-size: 15px; color: var(--vert); min-height: 24px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 8px; }
 .garanties { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 34px; margin: 30px 0 0; padding: 0; list-style: none; }
 .garanties li { display: flex; align-items: center; gap: 9px; font-size: 13px; color: var(--selle); }
 .garanties .icone { width: 20px; height: 20px; }
 
-/* Collage */
+/* Collage : l'animation est pilotée par le défilement (voir le script) */
 .collage { display: flex; justify-content: center; align-items: center; margin: 56px auto -90px; padding: 0 24px; position: relative; z-index: 2; }
-.polaroid {
-  margin: 0; border: 3px solid var(--parchemin); background: var(--os); flex: none;
-  width: clamp(150px, 20vw, 250px); aspect-ratio: 4 / 5;
-}
-.polaroid img { width: 100%; height: 100%; object-fit: cover; }
-.polaroid:nth-child(1) { --rot: -3deg; --dx: -120px; --dy: 60px; --rot0: -8deg; --i: 0; margin-right: -34px; margin-top: 30px; }
-.polaroid:nth-child(2) { --rot: 2deg; --dx: 120px; --dy: -60px; --rot0: 8deg; --i: 1; margin-right: -34px; margin-top: -10px; z-index: 2; }
-.polaroid:nth-child(3) { --rot: -1.5deg; --dx: -120px; --dy: -60px; --rot0: -8deg; --i: 2; margin-right: -34px; margin-top: 34px; z-index: 3; width: clamp(160px, 22vw, 275px); }
-.polaroid:nth-child(4) { --rot: 3deg; --dx: 120px; --dy: 60px; --rot0: 8deg; --i: 3; margin-right: -34px; margin-top: -6px; z-index: 2; }
-.polaroid:nth-child(5) { --rot: -2.5deg; --dx: -120px; --dy: 60px; --rot0: -8deg; --i: 4; margin-top: 28px; }
-.polaroid { transform: rotate(var(--rot, 0deg)); translate: 0 var(--par, 0px); will-change: transform; backface-visibility: hidden; }
-.js .polaroid {
-  opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--rot0));
-  transition: opacity .9s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--i) * 120ms), transform .9s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--i) * 120ms);
-}
-.js .collage.visible .polaroid { opacity: 1; transform: rotate(var(--rot)); }
-.js .collage.instant .polaroid { transition: none !important; }
-.js .collage.posee .polaroid { transition: transform .4s ease; }
-.js .collage.posee .polaroid:hover { transform: rotate(0deg) scale(1.04); z-index: 10; }
+.polaroid { margin: 0; flex: none; width: clamp(150px, 20vw, 250px); aspect-ratio: 4 / 5; position: relative; transform: rotate(var(--rot, 0deg)); will-change: transform, opacity; }
+.js .polaroid { opacity: 0; }
+.cadre { width: 100%; height: 100%; border: 3px solid var(--parchemin); border-radius: 4px; background: var(--os); overflow: hidden; transition: transform .55s cubic-bezier(0.22, 1, 0.36, 1); }
+.cadre img { width: 100%; height: 100%; object-fit: cover; }
+.polaroid:hover { z-index: 10 !important; }
+.polaroid:hover .cadre { transform: rotate(calc(var(--rot) * -1)) scale(1.05); }
+.polaroid:nth-child(1) { --rot: -3deg; margin-right: -34px; margin-top: 30px; }
+.polaroid:nth-child(2) { --rot: 2deg; margin-right: -34px; margin-top: -10px; z-index: 2; }
+.polaroid:nth-child(3) { --rot: -1.5deg; margin-right: -34px; margin-top: 34px; z-index: 3; width: clamp(160px, 22vw, 275px); }
+.polaroid:nth-child(4) { --rot: 3deg; margin-right: -34px; margin-top: -6px; z-index: 2; }
+.polaroid:nth-child(5) { --rot: -2.5deg; margin-top: 28px; }
 .bande { background: var(--os); padding-top: 150px; }
 
 /* Services */
 .cartes-services { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 56px; }
 .carte-service {
-  background: #ffffff; border: 1px solid var(--vert-clair); border-radius: 7.5px; overflow: hidden;
+  background: #ffffff; border: 1px solid var(--vert-clair); border-radius: 16px; overflow: hidden;
   display: flex; flex-direction: column; transition: transform .3s ease, border-color .3s ease;
 }
 .carte-service:hover { border-color: var(--vert-sauge); transform: translateY(-4px); }
@@ -149,7 +165,7 @@ section { padding: 75px 0; }
 .lien-devis:hover { color: var(--vert-fonce); }
 
 /* Panneau sombre */
-.panneau { background: var(--vert-profond); border-radius: 7.5px; padding: 45px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 50px; align-items: center; color: var(--parchemin); }
+.panneau { background: var(--vert-profond); border-radius: 22px; padding: 45px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 50px; align-items: center; color: var(--parchemin); }
 .panneau .surtitre { text-align: left; color: var(--texte-clair); }
 .panneau .btn-principal { border-color: var(--vert-sauge); }
 .panneau h2 { color: var(--parchemin); font-size: 44px; line-height: 1.12; letter-spacing: -0.5px; margin-bottom: 22px; }
@@ -159,7 +175,7 @@ section { padding: 75px 0; }
 
 /* Réalisations */
 .galerie { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 50px; }
-.galerie button { padding: 0; border: 0; background: var(--os); border-radius: 7.5px; overflow: hidden; cursor: zoom-in; aspect-ratio: 1 / 1; }
+.galerie button { padding: 0; border: 0; background: var(--os); border-radius: 12px; overflow: hidden; cursor: zoom-in; aspect-ratio: 1 / 1; }
 .galerie img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
 .galerie button:hover img { transform: scale(1.04); }
 
@@ -167,7 +183,7 @@ section { padding: 75px 0; }
 .visionneuse { position: fixed; inset: 0; z-index: 100; background: rgba(28, 51, 36, .94); display: none; align-items: center; justify-content: center; padding: 60px 70px; }
 .visionneuse.ouverte { display: flex; }
 .visionneuse img { max-height: 100%; max-width: 100%; object-fit: contain; border: 3px solid var(--parchemin); }
-.visionneuse button { position: absolute; background: var(--parchemin); border: 0; border-radius: 3.75px; width: 46px; height: 46px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.visionneuse button { position: absolute; background: var(--parchemin); border: 0; border-radius: 10px; width: 46px; height: 46px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .v-fermer { top: 14px; right: 14px; }
 .v-prec { left: 12px; top: 50%; margin-top: -23px; }
 .v-suiv { right: 12px; top: 50%; margin-top: -23px; }
@@ -186,7 +202,7 @@ section { padding: 75px 0; }
 
 /* Avis */
 .avis-liste { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 50px; }
-.carte-avis { border: 1px solid var(--loam); border-radius: 7.5px; padding: 40px; background: var(--parchemin); }
+.carte-avis { border: 1px solid var(--loam); border-radius: 16px; padding: 40px; background: var(--parchemin); }
 .etoiles { display: flex; gap: 4px; margin-bottom: 20px; }
 .etoiles svg { width: 20px; height: 20px; fill: var(--vert); stroke: var(--vert); stroke-width: 1; }
 .carte-avis blockquote { margin: 0 0 22px; font-family: var(--serif); font-size: 24px; line-height: 1.35; letter-spacing: -0.2px; }
@@ -202,37 +218,58 @@ section { padding: 75px 0; }
 .appel .boutons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
 /* Contact */
-.contact { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; margin-top: 50px; }
-.coordonnees { list-style: none; margin: 0; padding: 0; }
-.coordonnees li { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--os); }
-.coordonnees li:first-child { padding-top: 0; }
-.coordonnees strong { display: block; font-weight: 500; }
-.coordonnees span, .coordonnees a { color: var(--selle); font-size: 15px; }
-.carte { border: 1px solid var(--loam); border-radius: 7.5px; overflow: hidden; min-height: 340px; background: var(--os); }
-.carte iframe { width: 100%; height: 100%; min-height: 340px; border: 0; display: block; }
-.formulaire { margin-top: 50px; border: 1px solid var(--loam); border-radius: 7.5px; padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; }
-.formulaire label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px; }
-.formulaire input, .formulaire textarea {
-  width: 100%; font: inherit; font-size: 15px; color: var(--encre); background: var(--parchemin);
-  border: 1px solid var(--encre); border-radius: 3.75px; padding: 13px 14px;
-}
-.formulaire textarea { min-height: 130px; resize: vertical; }
-.formulaire input::placeholder, .formulaire textarea::placeholder { color: var(--ecorce); }
-.formulaire .large { grid-column: 1 / -1; }
-.formulaire .actions { grid-column: 1 / -1; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.contact-grille { display: grid; grid-template-columns: 5fr 7fr; gap: 24px; margin-top: 50px; align-items: stretch; }
+.contact-infos { background: var(--vert-profond); color: #fcfaf1; border-radius: 22px; padding: 44px; display: flex; flex-direction: column; }
+.coordonnees { list-style: none; margin: 0; padding: 0; display: grid; gap: 26px; }
+.coordonnees li { display: flex; gap: 16px; align-items: flex-start; }
+.coordonnees .ico { width: 46px; height: 46px; border-radius: 12px; background: rgba(255, 255, 255, .08); display: flex; align-items: center; justify-content: center; flex: none; }
+.coordonnees .icone { stroke: var(--texte-clair); }
+.coordonnees strong { display: block; font-size: 12px; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; color: var(--texte-clair); margin-bottom: 3px; }
+.coordonnees span, .coordonnees a { color: #fcfaf1; font-size: 17px; line-height: 1.5; text-decoration: none; overflow-wrap: anywhere; }
+.coordonnees a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.contact-puces { margin-top: auto; padding-top: 34px; display: flex; flex-wrap: wrap; gap: 10px; }
+.puce { border: 1px solid rgba(255, 255, 255, .18); border-radius: 100px; padding: 7px 14px; font-size: 13px; color: #fcfaf1; }
+.formulaire { background: #ffffff; border: 1px solid var(--vert-clair); border-radius: 22px; padding: 44px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto 1fr auto; gap: 16px; }
+.champ-projet { display: flex; }
+.champ-projet textarea { flex: 1; }
+.champ { position: relative; }
+.champ.large { grid-column: 1 / -1; }
+.champ input, .champ textarea { width: 100%; height: 60px; font: inherit; font-size: 16px; color: var(--encre); background: var(--parchemin); border: 1px solid var(--loam); border-radius: 12px; padding: 25px 16px 8px; transition: border-color .2s, background-color .2s, box-shadow .2s; }
+.champ textarea { height: auto; min-height: 150px; padding-top: 30px; resize: vertical; display: block; }
+.champ input:hover, .champ textarea:hover { border-color: var(--ecorce); }
+.champ input:focus, .champ textarea:focus { outline: none; border-color: var(--vert); background: #ffffff; box-shadow: 0 0 0 4px rgba(47, 93, 58, .12); }
+.champ label { position: absolute; left: 17px; top: 19px; font-size: 15px; color: var(--ecorce); pointer-events: none; transition: top .18s ease, font-size .18s ease, color .18s ease; }
+.champ input:focus + label, .champ input:not(:placeholder-shown) + label, .champ textarea:focus + label, .champ textarea:not(:placeholder-shown) + label { top: 9px; font-size: 12px; color: var(--vert); }
+.formulaire .actions { grid-column: 1 / -1; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 6px; }
+.formulaire .actions .btn { min-height: 54px; padding: 0 32px; }
+.formulaire .confirmation { margin: 0; justify-content: flex-start; }
+.carte { margin-top: 24px; border: 1px solid var(--loam); border-radius: 22px; overflow: hidden; height: 380px; background: var(--os); }
+.carte iframe { width: 100%; height: 100%; border: 0; display: block; }
 
 /* Pied de page */
-.pied { background: var(--vert-profond); color: #fcfaf1; padding: 60px 0 28px; }
-.pied-grille { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; }
-.pied h3 { font-family: var(--sans); font-weight: 500; font-size: 15px; margin-bottom: 14px; color: #fcfaf1; }
-.pied p { font-size: 15px; color: #fcfaf1; line-height: 1.8; }
-.pied a { display: block; width: fit-content; font-size: 15px; color: var(--texte-clair); line-height: 1.8; text-decoration: none; }
-.pied a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-.pied a:focus-visible, .pied button:focus-visible { outline-color: #fcfaf1; }
-.pied .marque { display: inline-block; margin-bottom: 12px; color: #fcfaf1; font-size: 22px; line-height: 1.3; }
-.pied-bas { border-top: 1px solid rgba(255, 255, 255, 0.12); margin-top: 40px; padding-top: 22px; display: flex; flex-direction: column; gap: 6px; }
-.pied-bas .legende { font-size: 12px; color: #fcfaf1; }
+.pied { position: relative; background: var(--vert-profond); color: #fcfaf1; padding: 80px 0 0; overflow: hidden; }
+.pied-grille { display: grid; grid-template-columns: 1.5fr .8fr 1.1fr 1.3fr; gap: 48px; }
+.pied-marque { font-family: var(--serif); font-weight: 500; font-size: 30px; line-height: 1.1; letter-spacing: -0.5px; color: #fcfaf1; text-decoration: none; display: inline-block; }
+.pied-texte { margin-top: 16px; max-width: 340px; font-size: 15px; line-height: 1.65; color: var(--texte-clair); }
+.pied .btn { margin-top: 26px; }
+.pied h3 { font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--vert-sauge); margin-bottom: 20px; }
+.pied ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
+.pied li { font-size: 15px; line-height: 1.5; color: #fcfaf1; }
+.pied li a { color: var(--texte-clair); text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .3s ease, color .2s; padding-bottom: 2px; }
+.pied li a:hover { color: #fcfaf1; background-size: 100% 1px; }
+.pied-contact li { display: flex; gap: 12px; align-items: flex-start; }
+.pied-contact .icone { width: 18px; height: 18px; stroke: var(--vert-sauge); margin-top: 3px; }
+.pied-contact li > span, .pied-contact li > div { overflow-wrap: anywhere; }
+.pied .btn-principal { border-color: var(--vert-sauge); }
+.pied-bas { border-top: 1px solid rgba(255, 255, 255, 0.12); margin-top: 64px; padding: 24px 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.pied-bas .legende { font-size: 13px; color: #fcfaf1; }
 .pied-bas .maquette { font-size: 11px; color: rgba(255, 255, 255, 0.5); }
+.pied-bas > div { display: flex; flex-direction: column; gap: 4px; }
+.haut { display: inline-flex; align-items: center; gap: 10px; background: transparent; border: 1px solid rgba(255, 255, 255, .2); border-radius: 10px; color: #fcfaf1; font: inherit; font-size: 14px; padding: 10px 16px; cursor: pointer; transition: background-color .2s, border-color .2s; }
+.haut:hover { background: rgba(255, 255, 255, .08); border-color: rgba(255, 255, 255, .4); }
+.haut .icone { width: 16px; height: 16px; stroke: #fcfaf1; transition: transform .2s; }
+.haut:hover .icone { transform: translateY(-3px); }
+.pied-mot { font-family: var(--serif); font-weight: 500; font-size: clamp(44px, 11.4vw, 168px); line-height: .78; letter-spacing: -0.03em; white-space: nowrap; text-align: center; color: rgba(255, 255, 255, .055); user-select: none; margin: 0 -2vw -.17em; padding-top: 10px; pointer-events: none; }
 
 /* Barre mobile */
 .barre-mobile { display: none; }
@@ -244,47 +281,60 @@ section { padding: 75px 0; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .js .apparait { opacity: 1; transform: none; transition: none; }
-  .js .polaroid { opacity: 1; transform: rotate(var(--rot)); transition: none; }
-  .js .collage.posee .polaroid { transition: none; }
-  .carte-service, .carte-photo img, .fleche { transition: none; }
+    .carte-service, .carte-photo img, .fleche { transition: none; }
 }
 
 @media (max-width: 760px) { .cartes-services { grid-template-columns: 1fr; } }
 
+/* Grands écrans intermédiaires */
+@media (max-width: 1240px) {
+  .nav-liens a { padding: 10px 11px; }
+  .nav-interieur { gap: 18px; }
+  .topbar .topbar-mail { display: none; }
+}
+
 /* Tablette */
-@media (max-width: 1000px) {
-  .nav-liens, .nav-actions .btn-secondaire { display: none; }
-  .burger { display: flex; }
-  .nav-actions { gap: 10px; }
+@media (max-width: 1100px) {
+  .topbar, .nav-liens, .nav-actions .btn { display: none; }
+  .nav-interieur { grid-template-columns: 1fr auto; height: 72px; }
+  .nav.scrolle .nav-interieur { height: 64px; }
+  .burger { display: block; }
   .heros h1 { font-size: 54px; }
   .titre-section { font-size: 40px; }
   .galerie { grid-template-columns: repeat(3, 1fr); }
   .panneau { grid-template-columns: 1fr; padding: 40px 32px; }
   .panneau-photo { margin: 0 -50px -75px 0; }
-  .a-propos, .contact { grid-template-columns: 1fr; }
-  .pied-grille { grid-template-columns: 1fr 1fr; }
+  .a-propos { grid-template-columns: 1fr; }
+  .pied-grille { grid-template-columns: 1fr 1fr; gap: 44px 40px; }
 }
+@media (max-width: 900px) {
+  .contact-grille { grid-template-columns: 1fr; }
+  .contact-infos, .formulaire { padding: 36px; }
+}
+@media (max-width: 760px) { .cartes-services { grid-template-columns: 1fr; } }
 
 /* Mobile */
 @media (max-width: 640px) {
-  body { padding-bottom: 68px; }
+  body { padding-bottom: 70px; }
   section { padding: 60px 0; }
   .conteneur { padding: 0 20px; }
   .nav-interieur { height: 64px; }
-  .nav-actions .btn-principal { display: none; }
-  .marque { font-size: 20px; }
-  .heros { padding-top: 50px; }
+  .marque-nom { font-size: 21px; }
+  .marque-sous { font-size: 9.5px; margin-top: 4px; }
+  .menu-mobile { padding-top: 88px; }
+  .heros { padding-top: 44px; }
+  .badge { font-size: 11px; padding: 7px 13px; margin-bottom: 22px; letter-spacing: 0.04em; }
   .heros h1 { font-size: 40px; margin-bottom: 20px; }
   .heros .sous-titre { font-size: 17px; }
   .titre-section, .panneau h2 { font-size: 30px; line-height: 1.14; letter-spacing: -0.42px; }
   .appel h2 { font-size: 32px; }
-  .champ-bouton { flex-direction: column; border: 0; background: transparent; gap: 10px; }
-  .champ-bouton input { border: 1px solid var(--encre); border-radius: 3.75px; padding: 15px 16px; flex: none; }
-  .champ-bouton .btn { margin: 0; border-radius: 3.75px; }
-  .champ-bouton:focus-within { outline: none; }
+  .champ-bouton { flex-direction: column; align-items: stretch; padding: 0; border: 0; background: transparent; gap: 10px; }
+  .champ-bouton:focus-within { box-shadow: none; }
+  .champ-bouton input { flex: none; height: 56px; background: #ffffff; border: 1px solid var(--loam); border-radius: 12px; padding: 0 16px; }
+  .champ-bouton input:focus { border-color: var(--vert); box-shadow: 0 0 0 4px rgba(47, 93, 58, .12); outline: none; }
+  .champ-bouton .btn { min-height: 54px; border-radius: 12px; }
   .garanties { gap: 12px 20px; }
   .collage { flex-wrap: wrap; margin-bottom: -60px; padding: 0 10px; }
-  .collage { justify-content: center; }
   .polaroid, .polaroid:nth-child(3) { width: 36vw; margin: 0; }
   .polaroid:nth-child(1) { margin: 0 -5vw 0 0; }
   .polaroid:nth-child(2) { margin: 14px -5vw 0 0; }
@@ -304,16 +354,28 @@ section { padding: 75px 0; }
   .avis-liste { grid-template-columns: 1fr; }
   .carte-avis { padding: 30px 24px; }
   .carte-avis blockquote { font-size: 21px; }
-  .formulaire { grid-template-columns: 1fr; padding: 28px 20px; }
-  .pied-grille { grid-template-columns: 1fr; gap: 28px; }
+  .appel .boutons .btn { width: 100%; }
+  .contact-infos, .formulaire { padding: 28px 22px; border-radius: 18px; }
+  .formulaire { grid-template-columns: 1fr; gap: 14px; }
+  .formulaire .actions { flex-direction: column; align-items: stretch; gap: 14px; }
+  .formulaire .actions .btn { width: 100%; }
+  .formulaire .confirmation { justify-content: center; }
+  .coordonnees span, .coordonnees a { font-size: 16px; overflow-wrap: normal; }
+  .coordonnees a[href^="mailto"] { font-size: 15px; }
+  .coordonnees li { gap: 14px; }
+  .carte { height: 300px; border-radius: 18px; }
+  .pied { padding-top: 56px; }
+  .pied-grille { grid-template-columns: 1fr; gap: 36px; }
+  .pied-bas { margin-top: 44px; flex-direction: column; align-items: flex-start; }
+  .pied .btn { width: 100%; }
   .visionneuse { padding: 70px 14px; }
   .v-prec { left: 6px; top: auto; bottom: 10px; margin: 0; }
   .v-suiv { right: 6px; top: auto; bottom: 10px; margin: 0; }
   .barre-mobile {
     display: grid; grid-template-columns: 1fr 1fr; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-    padding: 10px 14px; background: var(--parchemin); border-top: 1px solid var(--loam);
+    padding: 10px 14px; background: rgba(252, 250, 241, .94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-top: 1px solid var(--loam);
   }
-  .barre-mobile .btn { padding: 13px 10px; }
+  .barre-mobile .btn { min-height: 48px; padding: 0 10px; }
 }
 </style>
 </head>
@@ -333,36 +395,60 @@ section { padding: 75px 0; }
     <symbol id="i-fermer" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
     <symbol id="i-gauche" viewBox="0 0 24 24"><path d="m14.5 5-7 7 7 7"/></symbol>
     <symbol id="i-droite" viewBox="0 0 24 24"><path d="m9.5 5 7 7-7 7"/></symbol>
+    <symbol id="i-haut" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   </defs>
 </svg>
 
-<header class="nav">
+<div class="topbar">
+  <div class="conteneur topbar-interieur">
+    <ul>
+      <li><svg class="icone"><use href="#i-lieu"/></svg>Pra-du-Not 5, 1732 Arconciel</li>
+      <li><svg class="icone"><use href="#i-horloge"/></svg>Du lundi au vendredi, 7h–18h</li>
+    </ul>
+    <ul>
+      <li><a href="tel:+41798166202"><svg class="icone"><use href="#i-telephone"/></svg>079 816 62 02</a></li>
+      <li class="topbar-mail"><a href="mailto:clement.paysagisme@gmail.com"><svg class="icone"><use href="#i-courriel"/></svg>clement.paysagisme@gmail.com</a></li>
+    </ul>
+  </div>
+</div>
+
+<header class="nav" id="nav">
   <div class="conteneur nav-interieur">
-    <a class="marque" href="#haut" aria-label="Clément Paysagisme, retour en haut de la page">Clément Paysagisme</a>
+    <a class="marque" href="#haut" aria-label="Clément Paysagisme, retour en haut de la page">
+      <span class="marque-nom">Clément Paysagisme</span>
+      <span class="marque-sous">Arconciel · Fribourg</span>
+    </a>
     <nav class="nav-liens" aria-label="Navigation principale">
-      <a href="#services">Services</a>
-      <a href="#realisations">Réalisations</a>
-      <a href="#a-propos">À propos</a>
-      <a href="#avis">Avis</a>
-      <a href="#contact">Contact</a>
+      <a href="#services" data-section="services">Services</a>
+      <a href="#realisations" data-section="realisations">Réalisations</a>
+      <a href="#a-propos" data-section="a-propos">À propos</a>
+      <a href="#avis" data-section="avis">Avis</a>
+      <a href="#contact" data-section="contact">Contact</a>
     </nav>
     <div class="nav-actions">
-      <a class="btn btn-secondaire" href="tel:+41798166202">079 816 62 02</a>
+      <a class="btn btn-secondaire" href="tel:+41798166202"><svg class="icone"><use href="#i-telephone"/></svg>079 816 62 02</a>
       <a class="btn btn-principal" href="#contact">Demander un devis <span class="fleche" aria-hidden="true">→</span></a>
-      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile">
-        <svg class="icone"><use href="#i-menu"/></svg>
-      </button>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile"><span></span><span></span><span></span></button>
     </div>
   </div>
-  <div class="menu-mobile" id="menu-mobile">
-    <a href="#services">Services</a>
-    <a href="#realisations">Réalisations</a>
-    <a href="#a-propos">À propos</a>
-    <a href="#avis">Avis</a>
-    <a href="#contact">Contact</a>
+</header>
+<div class="menu-mobile" id="menu-mobile" aria-hidden="true">
+  <ol>
+    <li><a href="#services"><small>01</small>Services</a></li>
+    <li><a href="#realisations"><small>02</small>Réalisations</a></li>
+    <li><a href="#a-propos"><small>03</small>À propos</a></li>
+    <li><a href="#avis"><small>04</small>Avis</a></li>
+    <li><a href="#contact"><small>05</small>Contact</a></li>
+  </ol>
+  <div class="menu-bas">
+    <a class="btn btn-secondaire" href="tel:+41798166202"><svg class="icone"><use href="#i-telephone"/></svg>079 816 62 02</a>
     <a class="btn btn-principal" href="#contact">Demander un devis <span class="fleche" aria-hidden="true">→</span></a>
+    <p>Du lundi au vendredi, 7h–18h</p>
   </div>
+</div>
+
 </header>
 
 <main id="haut">
@@ -370,7 +456,7 @@ section { padding: 75px 0; }
   <div>
   <section class="heros" style="padding-bottom:0">
     <div class="conteneur">
-      <p class="surtitre">Paysagiste à Arconciel · Canton de Fribourg</p>
+      <p class="badge">Paysagiste à Arconciel · Canton de Fribourg</p>
       <h1>Des jardins entretenus et aménagés avec soin, depuis 2012.</h1>
       <p class="sous-titre">Entretien des espaces verts et aménagements extérieurs pour les particuliers, les communes et les régies.</p>
       <form class="champ-bouton" id="form-rappel" novalidate>
@@ -391,11 +477,11 @@ section { padding: 75px 0; }
 
   <!-- Collage -->
   <div class="collage" id="collage" aria-label="Quelques chantiers de Clément Paysagisme">
-    <figure class="polaroid"><img src="https://www.clement-paysagisme.ch/assets/img/work/2.jpg" alt="Terrasse en bois aménagée par Clément Paysagisme" width="500" height="625"></figure>
-    <figure class="polaroid"><img src="https://www.clement-paysagisme.ch/assets/img/work/15.jpg" alt="Piscine et banc en bois aménagés par Clément Paysagisme" width="500" height="625"></figure>
-    <figure class="polaroid"><img src="https://www.clement-paysagisme.ch/assets/img/work/8.jpg" alt="Mur en pierres sèches réalisé par Clément Paysagisme" width="500" height="625"></figure>
-    <figure class="polaroid"><img src="https://www.clement-paysagisme.ch/assets/img/work/19.jpg" alt="Entrée de maison avec escalier et muret réalisés par Clément Paysagisme" width="500" height="625"></figure>
-    <figure class="polaroid"><img src="https://www.clement-paysagisme.ch/assets/img/work/11.jpg" alt="Dallage réalisé par Clément Paysagisme" width="500" height="625" loading="lazy"></figure>
+    <figure class="polaroid"><div class="cadre"><img src="https://www.clement-paysagisme.ch/assets/img/work/2.jpg" alt="Terrasse en bois aménagée par Clément Paysagisme" width="500" height="625"></div></figure>
+    <figure class="polaroid"><div class="cadre"><img src="https://www.clement-paysagisme.ch/assets/img/work/15.jpg" alt="Piscine et banc en bois aménagés par Clément Paysagisme" width="500" height="625"></div></figure>
+    <figure class="polaroid"><div class="cadre"><img src="https://www.clement-paysagisme.ch/assets/img/work/8.jpg" alt="Mur en pierres sèches réalisé par Clément Paysagisme" width="500" height="625"></div></figure>
+    <figure class="polaroid"><div class="cadre"><img src="https://www.clement-paysagisme.ch/assets/img/work/19.jpg" alt="Entrée de maison avec escalier et muret réalisés par Clément Paysagisme" width="500" height="625"></div></figure>
+    <figure class="polaroid"><div class="cadre"><img src="https://www.clement-paysagisme.ch/assets/img/work/11.jpg" alt="Dallage réalisé par Clément Paysagisme" width="500" height="625" loading="lazy"></div></figure>
   </div>
 
   <!-- Services -->
@@ -503,28 +589,35 @@ section { padding: 75px 0; }
     <div class="conteneur apparait">
       <p class="surtitre">Contact</p>
       <h2 class="titre-section">Nous sommes à Arconciel.</h2>
-      <div class="contact">
-        <ul class="coordonnees">
-          <li><svg class="icone"><use href="#i-lieu"/></svg><div><strong>Adresse</strong><span>Pra-du-Not 5<br>1732 Arconciel (canton de Fribourg, Suisse)</span></div></li>
-          <li><svg class="icone"><use href="#i-telephone"/></svg><div><strong>Téléphone</strong><a href="tel:+41798166202">079 816 62 02</a></div></li>
-          <li><svg class="icone"><use href="#i-courriel"/></svg><div><strong>E-mail</strong><a href="mailto:clement.paysagisme@gmail.com">clement.paysagisme@gmail.com</a></div></li>
-          <li style="border-bottom:0"><svg class="icone"><use href="#i-horloge"/></svg><div><strong>Horaires</strong><span>Du lundi au vendredi, de 7h à 18h<br>Fermé le samedi et le dimanche</span></div></li>
-        </ul>
-        <div class="carte">
-          <iframe title="Carte : Pra-du-Not 5, 1732 Arconciel" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps?q=Pra-du-Not+5,+1732+Arconciel&amp;hl=fr&amp;z=15&amp;output=embed"></iframe>
-        </div>
+      <div class="contact-grille">
+        <aside class="contact-infos">
+          <ul class="coordonnees">
+            <li><span class="ico"><svg class="icone"><use href="#i-lieu"/></svg></span><div><strong>Adresse</strong><span>Pra-du-Not 5<br>1732 Arconciel (canton de Fribourg, Suisse)</span></div></li>
+            <li><span class="ico"><svg class="icone"><use href="#i-telephone"/></svg></span><div><strong>Téléphone</strong><a href="tel:+41798166202">079 816 62 02</a></div></li>
+            <li><span class="ico"><svg class="icone"><use href="#i-courriel"/></svg></span><div><strong>E-mail</strong><a href="mailto:clement.paysagisme@gmail.com">clement.paysagisme@gmail.com</a></div></li>
+            <li><span class="ico"><svg class="icone"><use href="#i-horloge"/></svg></span><div><strong>Horaires</strong><span>Du lundi au vendredi, de 7h à 18h<br>Fermé le samedi et le dimanche</span></div></li>
+          </ul>
+          <div class="contact-puces">
+            <span class="puce">Devis gratuit</span>
+            <span class="puce">5,0 ★ sur Google</span>
+            <span class="puce">Depuis 2012</span>
+          </div>
+        </aside>
+        <form class="formulaire" id="form-contact" novalidate>
+          <div class="champ"><input id="nom" name="nom" type="text" autocomplete="name" placeholder=" "><label for="nom">Nom</label></div>
+          <div class="champ"><input id="tel" name="tel" type="tel" autocomplete="tel" placeholder=" "><label for="tel">Téléphone</label></div>
+          <div class="champ large"><input id="mail" name="mail" type="email" autocomplete="email" placeholder=" "><label for="mail">E-mail</label></div>
+          <div class="champ large champ-projet"><textarea id="projet" name="projet" placeholder=" "></textarea><label for="projet">Votre projet</label></div>
+          <div class="actions">
+            <button class="btn btn-principal" type="submit">Envoyer <span class="fleche" aria-hidden="true">→</span></button>
+            <p class="confirmation" id="confirmation-contact" role="status" aria-live="polite"></p>
+          </div>
+        </form>
       </div>
-      <form class="formulaire" id="form-contact" novalidate>
-        <div><label for="nom">Nom</label><input id="nom" name="nom" type="text" autocomplete="name" placeholder="Votre nom"></div>
-        <div><label for="tel">Téléphone</label><input id="tel" name="tel" type="tel" autocomplete="tel" placeholder="Votre numéro de téléphone"></div>
-        <div class="large"><label for="mail">E-mail</label><input id="mail" name="mail" type="email" autocomplete="email" placeholder="Votre adresse e-mail"></div>
-        <div class="large"><label for="projet">Votre projet</label><textarea id="projet" name="projet" placeholder="Décrivez-nous votre projet"></textarea></div>
-        <div class="actions">
-          <button class="btn btn-principal" type="submit">Envoyer <span class="fleche" aria-hidden="true">→</span></button>
-          <span class="confirmation" id="confirmation-contact" role="status" aria-live="polite" style="margin:0"></span>
-        </div>
-      </form>
+      <div class="carte">
+        <iframe title="Carte : Pra-du-Not 5, 1732 Arconciel" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Pra-du-Not+5,+1732+Arconciel&amp;hl=fr&amp;z=15&amp;output=embed"></iframe>
+      </div>
     </div>
   </section>
 </main>
@@ -533,29 +626,50 @@ section { padding: 75px 0; }
   <div class="conteneur">
     <div class="pied-grille">
       <div>
-        <a class="marque" href="#haut" style="display:inline-block">Clément Paysagisme Sàrl</a>
-        <p>Pra-du-Not 5<br>1732 Arconciel</p>
+        <a class="pied-marque" href="#haut">Clément Paysagisme Sàrl</a>
+        <p class="pied-texte">Entretien des espaces verts et aménagements extérieurs pour les particuliers, les communes et les régies.</p>
+        <a class="btn btn-principal" href="#contact">Demander un devis <span class="fleche" aria-hidden="true">→</span></a>
       </div>
       <div>
-        <h3>Nous joindre</h3>
-        <a href="tel:+41798166202">079 816 62 02</a>
-        <a href="mailto:clement.paysagisme@gmail.com">clement.paysagisme@gmail.com</a>
-        <p>Du lundi au vendredi, de 7h à 18h</p>
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#realisations">Réalisations</a></li>
+          <li><a href="#a-propos">À propos</a></li>
+          <li><a href="#avis">Avis</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
       </div>
       <div>
-        <h3>Sur cette page</h3>
-        <a href="#services">Services</a>
-        <a href="#realisations">Réalisations</a>
-        <a href="#a-propos">À propos</a>
-        <a href="#avis">Avis</a>
-        <a href="#contact">Contact</a>
+        <h3>Nos services</h3>
+        <ul>
+          <li><a href="#services">Tonte et gazon</a></li>
+          <li><a href="#services">Taille et élagage</a></li>
+          <li><a href="#services">Plantation et dessouchage</a></li>
+          <li><a href="#services">Contrat d'entretien à l'année</a></li>
+          <li><a href="#services">Clôtures, treillis et brise-vue</a></li>
+          <li><a href="#services">Maçonnerie, pavés et dallages</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul class="pied-contact">
+          <li><svg class="icone"><use href="#i-lieu"/></svg><span>Pra-du-Not 5<br>1732 Arconciel</span></li>
+          <li><svg class="icone"><use href="#i-telephone"/></svg><a href="tel:+41798166202">079 816 62 02</a></li>
+          <li><svg class="icone"><use href="#i-courriel"/></svg><a href="mailto:clement.paysagisme@gmail.com">clement.paysagisme@gmail.com</a></li>
+          <li><svg class="icone"><use href="#i-horloge"/></svg><span>Du lundi au vendredi, de 7h à 18h</span></li>
+        </ul>
       </div>
     </div>
     <div class="pied-bas">
-      <span class="legende">© 2026 Clément Paysagisme Sàrl</span>
-      <span class="maquette">Maquette de démonstration réalisée par gdjahoui.com</span>
+      <div>
+        <span class="legende">© 2026 Clément Paysagisme Sàrl</span>
+        <span class="maquette">Maquette de démonstration réalisée par gdjahoui.com</span>
+      </div>
+      <button class="haut" type="button" id="haut-page">Retour en haut <svg class="icone"><use href="#i-haut"/></svg></button>
     </div>
   </div>
+  <div class="pied-mot" aria-hidden="true">Clément Paysagisme</div>
 </footer>
 
 <!-- Barre d'appel mobile -->
@@ -651,28 +765,58 @@ const PHOTOS = [2, 15, 18, 19, 12, 8, 11, 14, 16, 10, 4, 5, 7, 13, 9, 17];
   });
 })();
 
-/* ---------- Menu mobile ---------- */
+/* ---------- En-tête : ombre au défilement, section active, menu mobile ---------- */
 (function () {
+  const nav = document.getElementById('nav');
   const burger = document.getElementById('burger');
   const menu = document.getElementById('menu-mobile');
+
+  function maj() { nav.classList.toggle('scrolle', window.scrollY > 12); }
+  window.addEventListener('scroll', maj, { passive: true });
+  maj();
+
+  // Section active dans le menu (aucune tant qu'on est dans l'en-tête de page)
+  const liens = Array.prototype.slice.call(document.querySelectorAll('.nav-liens a[data-section]'));
+  const sections = liens.map(function (a) { return document.getElementById(a.dataset.section); });
+  function actif() {
+    const ligne = window.innerHeight * 0.4;
+    let courant = null;
+    sections.forEach(function (sec) { if (sec && sec.getBoundingClientRect().top <= ligne) courant = sec.id; });
+    liens.forEach(function (a) { a.classList.toggle('actif', a.dataset.section === courant); });
+  }
+  window.addEventListener('scroll', actif, { passive: true });
+  window.addEventListener('resize', actif);
+  actif();
+
   function basculer(ouvert) {
     menu.classList.toggle('ouvert', ouvert);
+    menu.setAttribute('aria-hidden', !ouvert);
+    document.body.classList.toggle('menu-ouvert', ouvert);
     burger.setAttribute('aria-expanded', ouvert);
     burger.setAttribute('aria-label', ouvert ? 'Fermer le menu' : 'Ouvrir le menu');
   }
   burger.addEventListener('click', function () { basculer(!menu.classList.contains('ouvert')); });
   menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { basculer(false); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') basculer(false); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 1100) basculer(false); });
+
+  document.getElementById('haut-page').addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 })();
 
 /* ---------- Formulaires (démonstration : aucun envoi réel) ---------- */
+function confirmer(id, texte) {
+  const el = document.getElementById(id);
+  el.innerHTML = '<svg class="icone" aria-hidden="true"><use href="#i-check"/></svg><span></span>';
+  el.lastChild.textContent = texte;
+}
 document.getElementById('form-rappel').addEventListener('submit', function (e) {
   e.preventDefault();
-  document.getElementById('confirmation-rappel').textContent = 'Merci ! Nous vous recontactons rapidement.';
+  confirmer('confirmation-rappel', 'Merci ! Nous vous recontactons rapidement.');
   this.reset();
 });
 document.getElementById('form-contact').addEventListener('submit', function (e) {
   e.preventDefault();
-  document.getElementById('confirmation-contact').textContent = 'Merci ! Votre message a bien été envoyé.';
+  confirmer('confirmation-contact', 'Merci ! Votre message a bien été envoyé.');
   this.reset();
 });
 
@@ -720,53 +864,51 @@ document.getElementById('form-contact').addEventListener('submit', function (e) 
   if (location.hash) reveler(decodeURIComponent(location.hash.slice(1)));
 })();
 
-/* ---------- Collage : entrée en alternance et effet de profondeur ---------- */
+/* ---------- Collage : entrée en alternance pilotée par le défilement ----------
+   Chaque photo arrive tour à tour de la gauche ou de la droite, en montant ou en descendant,
+   avec une rotation plus forte qui se résorbe jusqu'à l'angle final. Le mouvement suit le défilement
+   (il est fluide, réversible, et jamais vide si l'on saute directement plus bas).
+   Une fois posées, les photos paires remontent et les impaires descendent de 25 px au plus. */
 (function () {
   const collage = document.getElementById('collage');
   if (!collage) return;
   const photos = Array.prototype.slice.call(collage.querySelectorAll('.polaroid'));
   const reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const COTE = [-1, 1, -1, 1, -1];          // gauche / droite / gauche / droite / gauche
+  const SENS = [1, -1, -1, 1, 1];           // 1 = arrive en montant, -1 = arrive en descendant
+  const FINALE = [-3, 2, -1.5, 3, -2.5];    // rotation finale (degrés)
+  const DEPART = [-8, 8, -8, 8, -8];        // rotation de départ (degrés)
+  const DECALAGE = 0.12;                    // 120 ms de décalage, exprimé en fraction de parcours
   let attente = false;
 
-  function profondeur() {
-    attente = false;
-    const r = collage.getBoundingClientRect(), H = window.innerHeight;
-    if (r.bottom < -300 || r.top > H + 300) return;
-    const s = Math.max(-1, Math.min(1, (H / 2 - (r.top + r.height / 2)) / H));
-    photos.forEach(function (p, i) {
-      // photos impaires (1, 3, 5) : elles descendent ; paires (2, 4) : elles remontent. 25 px au maximum.
-      const sens = (i % 2 === 0) ? 1 : -1;
-      p.style.setProperty('--par', (sens * s * 25).toFixed(1) + 'px');
-    });
-  }
-  if (!reduit) {
-    window.addEventListener('scroll', function () { if (!attente) { attente = true; requestAnimationFrame(profondeur); } }, { passive: true });
-    window.addEventListener('resize', profondeur);
-    profondeur();
-  }
+  const borne = function (x) { return Math.max(0, Math.min(1, x)); };
+  const adoucir = function (x) { return 1 - Math.pow(1 - x, 3); };  // courbe de type easeOutCubic
 
-  function poser(instantane) {
-    if (reduit) { collage.classList.add('visible', 'instant', 'posee'); return; }
-    if (instantane) {
-      collage.classList.add('visible', 'instant');
-      setTimeout(function () { collage.classList.remove('instant'); collage.classList.add('posee'); }, 100);
-    } else {
-      collage.classList.add('visible');
-      setTimeout(function () { collage.classList.add('posee'); }, 4 * 120 + 900 + 80);
-    }
-  }
-  if (!('IntersectionObserver' in window)) { poser(true); return; }
-  const obs = new IntersectionObserver(function (entrees) {
-    entrees.forEach(function (en) {
-      if (en.isIntersecting) { poser(false); obs.disconnect(); }
-      else if (en.boundingClientRect.bottom < 0) { poser(true); obs.disconnect(); }
+  function dessiner() {
+    attente = false;
+    const vh = window.innerHeight, r = collage.getBoundingClientRect();
+    const etroit = window.innerWidth <= 640;
+    const dx = etroit ? 70 : 120, dy = etroit ? 40 : 60;
+    // Le parcours commence quand le haut du collage entre dans l'écran et se termine à 45 % de la hauteur
+    const base = borne((vh * 1.0 - r.top) / (vh * 0.62));
+    const centre = (vh / 2 - (r.top + r.height / 2)) / vh;
+    const prof = Math.max(-1, Math.min(1, centre));
+    photos.forEach(function (el, i) {
+      const local = reduit ? 1 : borne((base - i * DECALAGE * 0.6) / (1 - 4 * DECALAGE * 0.6));
+      const e = adoucir(local);
+      const par = reduit ? 0 : (i % 2 === 0 ? 1 : -1) * prof * 25 * e;
+      const x = COTE[i] * dx * (1 - e);
+      const y = SENS[i] * dy * (1 - e) + par;
+      const rot = DEPART[i] + (FINALE[i] - DEPART[i]) * e;
+      el.style.opacity = borne(local * 3).toFixed(3);
+      el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' + rot.toFixed(2) + 'deg)';
     });
-  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
-  obs.observe(collage);
-  // filet de sécurité : jamais de collage vide
-  window.addEventListener('scroll', function () {
-    if (!collage.classList.contains('visible') && collage.getBoundingClientRect().top < window.innerHeight) { poser(collage.getBoundingClientRect().bottom < 0); obs.disconnect(); }
-  }, { passive: true });
+  }
+  function planifier() { if (!attente) { attente = true; requestAnimationFrame(dessiner); } }
+  window.addEventListener('scroll', planifier, { passive: true });
+  window.addEventListener('resize', planifier);
+  window.addEventListener('load', planifier);
+  dessiner();
 })();
 </script>
 </body>
